@@ -11,6 +11,8 @@ class Regione(models.Model):
 class Provincia(models.Model):
 	provincia = models.CharField(max_length=80)
 	regione = models.ForeignKey(Regione)
+	def __unicode__(self):
+		return self.provincia
 
 class Comune(models.Model):
 	provincia = models.ForeignKey(Provincia)
