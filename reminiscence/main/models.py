@@ -2,22 +2,19 @@ from django.db import models
 
 # Create your models here.
 
-
-class Stato(models.Model):
-	stato = models.CharField(max_length=80)
-	def __unicode__(self):
-		return self.stato
 		
 class Regione(models.Model):
 	regione = models.CharField(max_length=80)
-	stato = models.ForeignKey(Stato)
 	def __unicode__(self):
 		return self.regione
 
+class Provincia(models.Model):
+	provincia = models.CharField(max_length=80)
+	regione = models.ForeignKey(Regione)
+
 class Comune(models.Model):
 	comune = models.CharField(max_length=80)
-	regione = models.ForeignKey(Regione)
-	stato = models.ForeignKey(Stato)
+	provincia = models.ForeignKey(Provincia)
 	def __unicode__(self):
 		return self.comune
 		
