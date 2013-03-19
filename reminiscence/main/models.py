@@ -10,9 +10,9 @@ class Luogo(models.Model):
 class Anziano(models.Model):
     nome= models.CharField(max_length=50)
     cognome= models.CharField(max_length=50 )
-    anno= models.DateTimeField('anno')
-    mese= models.DateTimeField('mese')
-    giorno= models.DateTimeField('giorno')
+    anno_nascita= models.DateTimeField('anno')
+    mese_nascita= models.DateTimeField('mese')
+    giorno_nascita= models.DateTimeField('giorno')
     luogo_nascita= models.ForeignKey(Luogo)
     email=models.CharField(max_length=200)
     password= models.CharField(max_length=50)
