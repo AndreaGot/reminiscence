@@ -1,11 +1,26 @@
 from django.db import models
 
 # Create your models here.
-class Luogo(models.Model):
-    localita= models.CharField(max_length=80)
-    comune= models.CharField(max_length=80)
-    provincia= models.CharField(max_length=80)
-    stato= models.CharField(max_length=80)
+
+
+class Stato(models.Model):
+	stato = models.CharField(max_length=80)
+	def __unicode__(self):
+		return self.stato
+		
+class Regione(models.Model):
+	regione = models.CharField(max_length=80)
+	stato = models.ForeignKey(Stato)
+	def __unicode__(self):
+		return self.regione
+
+class Comune(models.Model):
+	comune = models.CharField(max_length=80)
+	regione = models.ForeignKey(Regione)
+	stato = models.ForeignKey(Stato)
+	def __unicode__(self):
+		return self.comune
+		
 
 class Anziano(models.Model):
     nome= models.CharField(max_length=50)
@@ -13,7 +28,7 @@ class Anziano(models.Model):
     anno_nascita= models.DateTimeField('anno')
     mese_nascita= models.DateTimeField('mese')
     giorno_nascita= models.DateTimeField('giorno')
-    luogo_nascita= models.ForeignKey(Luogo)
+    luogo_nascita= models.ForeignKey(Comune)
     email=models.CharField(max_length=200)
     password= models.CharField(max_length=50)
     def __unicode__(self):
@@ -44,7 +59,7 @@ class Suggerimento(models.Model):
 		
 class si_svolge_memoria(models.Model):
     IDDecade= models.ForeignKey(Decade)
-    IDluogo= models.ForeignKey(Luogo)
+    IDluogo= models.ForeignKey(Comune)
     IDMemoria=models.ForeignKey(Memoria)
     anno= models.DateTimeField('anno')
     mese= models.DateTimeField('mese')
@@ -54,7 +69,7 @@ class si_svolge_memoria(models.Model):
 
 class si_svolge_Suggerimento (models.Model):
     IDDecade= models.ForeignKey(Decade)
-    IDluogo= models.ForeignKey(Luogo)
+    IDluogo= models.ForeignKey(Comune)
     IDSuggerimento=models.ForeignKey(Suggerimento)
     anno= models.DateTimeField('anno')
     mese= models.DateTimeField('mese')
