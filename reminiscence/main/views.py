@@ -2,7 +2,7 @@
 from django.http import HttpResponse
 from django.template import Context, loader
 from django.shortcuts import render
-from reminiscence.main.models import Comune, Provincia, Regione
+from reminiscence.main.models import Comune, Provincia, Regione, Anziano
 
 def index(request):
 	template = loader.get_template('main/index.html')
@@ -21,5 +21,10 @@ def luoghi(request):
 	comprov = Regione.objects.all()
 	context = {'comune':comune, 'prov':provincia, 'reg':regione, 'comprov':comprov}
 	return render(request, 'main/luoghi.html', context)
+	
+def login(request):
+	#anziano = Anziano.objects.create
+	#context = {'anziano', anziano}
+	return render(request, 'main/login.html')
 	
 	
