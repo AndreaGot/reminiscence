@@ -15,10 +15,11 @@ def pagina2(request):
 	return HttpResponse(template.render(context))
 
 def luoghi(request):
-	comune = Comune.objects.get(pk=1001)
+	comune = Comune.objects.all()
 	provincia = Provincia.objects.get(pk=1)
 	regione = Regione.objects.get(pk=21)
-	context = {'comune':comune, 'provincia':provincia, 'regione':regione}
+	comprov = Regione.objects.all()
+	context = {'comune':comune, 'prov':provincia, 'reg':regione, 'comprov':comprov}
 	return render(request, 'main/luoghi.html', context)
 	
 	

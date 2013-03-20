@@ -3,12 +3,12 @@
 <h1>saakcbsldk</h1>
 
 {{comune}}
-{{provincia}}
-{{regione}}
+{{prov}}
+{{reg}}
 
 <ul>
-{% for com in Comune.objects.all %}
-    <li>ciao</li>
+{% for com in comune %}
+    <li>{{com}}, {{comune.provincia}}, {{comune.provincia.stato}}</li>
 {% endfor %}
 </ul>
 
