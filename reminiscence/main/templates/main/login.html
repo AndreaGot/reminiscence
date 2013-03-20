@@ -177,7 +177,7 @@ box-shadow: 1px 1px 50px #f00;
 
 
 </style>
-<script>
+<!-- <script>
 function removeClass(ele,cls) {
 	if (hasClass(ele,cls)) {
     	var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
@@ -195,14 +195,22 @@ TheForm = document.MyForm;
 var username=TheForm.firstname.value;
 var password=TheForm.password.value;
 var title=document.getElementById('title');
+var correctData=false;
+if(username=="mario")
+{
+correctData=true;	
+}
 
 
 
 
-//LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK HERE!
-var correctData=false;  //IMPLEMENT SOME PYTHON CODE HERE
-//tiri su la username e la password, se sono uguali a dei valori che decidi te tipo "mario rossi" e "12345678" allora metti correctData a true senno a false.. .spero vada bene
-//LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK HERE!
+//  //IMPLEMENT SOME PYTHON CODE HERE
+ 
+//tiri su la username e la password, se sono uguali a dei valori che decidi te tipo "mariorossi" e "12345678" allora metti correctData a true senno a false.. .spero vada bene
+
+
+
+
 
 
 
@@ -232,18 +240,19 @@ function redirect() {
 }
 
 
-</script>
+</script> -->
 <head>
 </head>
 
 <body class="bodyGround" > 
 <div  class="loginDiv"style="background-color:#00ff00;height:350px;width:350px;margin: auto;">
-<form  class="form-container" name="MyForm">
+<form  class="form-container" name="MyForm" action="{% url 'main:verifica' %}" method="POST">
+{% csrf_token %} 
 <div class="form-title" id="title"><h2>Log in</h2></div>
 <div class="form-title">Name</div>
-<input class="form-field" type="text" name="firstname" /><br />
+<input class="form-field" type="text" name="firstname"  method="POST"/><br />
 <div class="form-title">Password</div>
-<input class="form-field" type="password" name="password" /><br />
+<input class="form-field" type="password" name="password" method="POST" /><br />
 <div>
 <input class="submit-button" type="submit" value="Submit" onclick="checkValues(event)" style="width:40%;"/>
 <span style="width:5%">or</span>

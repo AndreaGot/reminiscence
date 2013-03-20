@@ -26,5 +26,11 @@ def login(request):
 	#anziano = Anziano.objects.create
 	#context = {'anziano', anziano}
 	return render(request, 'main/login.html')
+
+def verifica(request):
+	nome = request.POST.get('firstname')
+	password = request.POST.get('password')
+	context = {'name':nome, 'pass':password}
+	return render(request, 'main/verifica.html', context)
 	
 	

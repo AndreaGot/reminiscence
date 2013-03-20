@@ -14,6 +14,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     
-    url(r'^main/', include('reminiscence.main.urls')),
+    url(r'^main/', include('reminiscence.main.urls', namespace="main")),
     url(r'^admin/', include(admin.site.urls)),
 )
