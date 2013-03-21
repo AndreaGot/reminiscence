@@ -177,7 +177,7 @@ box-shadow: 1px 1px 50px #f00;
 
 
 </style>
-<!-- <script>
+<script> //COMMENTARE QUESTO SCRIPT PER ABILITARE IL DEBUG (PAGINA IN CUI VENGONO VISUALIZZATI I DATI IMMESSI)
 function removeClass(ele,cls) {
 	if (hasClass(ele,cls)) {
     	var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
@@ -196,7 +196,7 @@ var username=TheForm.firstname.value;
 var password=TheForm.password.value;
 var title=document.getElementById('title');
 var correctData=false;
-if(username.length < 6 || password.length < 6)
+if(username.length >= 6 && password.length >= 6)
 {
 correctData=true;	
 }
@@ -240,7 +240,7 @@ function redirect() {
 }
 
 
-</script> -->
+</script> 
 <head>
 </head>
 
