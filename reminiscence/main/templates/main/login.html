@@ -196,7 +196,7 @@ var username=TheForm.firstname.value;
 var password=TheForm.password.value;
 var title=document.getElementById('title');
 var correctData=false;
-if(username=="mario")
+if(username.length < 6 || password.length < 6)
 {
 correctData=true;	
 }
@@ -217,12 +217,12 @@ correctData=true;
 
 if(correctData){
 
-title.innerHTML="Correct Password";
+title.innerHTML="Login in corso!";
 title.style.color="#00ff00";
 title.style.fontSize="30px";
 }else{
 
-title.innerHTML="Wrong Password";
+title.innerHTML="Controlla i dati";
 title.style.color="#ff0000";
 title.style.fontSize="30px";
 var d=document.getElementsByName("password")
