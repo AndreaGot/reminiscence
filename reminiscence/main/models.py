@@ -6,32 +6,32 @@ from django.db import models
 class Regione(models.Model):
 	regione = models.CharField(max_length=80)
 	def __unicode__(self):
-		return self.regione
+		return str(self.regione)
 
 class Provincia(models.Model):
 	provincia = models.CharField(max_length=80)
 	regione = models.ForeignKey(Regione)
 	def __unicode__(self):
-		return self.provincia
+		return str(self.provincia)
 
 class Comune(models.Model):
 	provincia = models.ForeignKey(Provincia)
 	comune = models.CharField(max_length=80)
 	def __unicode__(self):
-		return self.comune
+		return str(self.comune)
 		
 
 class Anziano(models.Model):
     nome= models.CharField(max_length=50)
     cognome= models.CharField(max_length=50 )
-    anno_nascita= models.DateTimeField('anno')
-    mese_nascita= models.DateTimeField('mese')
-    giorno_nascita= models.DateTimeField('giorno')
+    anno_nascita= models.CharField(max_length = 4)
+    mese_nascita= models.CharField(max_length = 2)
+    giorno_nascita= models.CharField(max_length = 2)
     luogo_nascita= models.ForeignKey(Comune)
     email=models.CharField(max_length=200)
     password= models.CharField(max_length=50)
     def __unicode__(self):
-		return self.nome, self.cognome
+		return str(self.cognome)
 	
 	
 class Memoria(models.Model):
@@ -41,12 +41,12 @@ class Memoria(models.Model):
     foto=models.ImageField(upload_to="Immagine.jpg")
     link= models.CharField(max_length=200)
     def __unicode__(self):
-		return self.titolo
+		return str(self.titolo)
 
 class Decade(models.Model):
     decade= models.CharField(max_length=10)
     def __unicode__(self):
-		return self.decade
+		return str(self.decade)
 		
 class Suggerimento(models.Model):
     titolo= models.CharField(max_length=200)
@@ -54,15 +54,15 @@ class Suggerimento(models.Model):
     tipoContenuto= models.CharField(max_length=200)
     contenuto = models.CharField(max_length=300)
     def __unicode__(self):
-		return self.titolo
+		return str(self.titolo)
 		
 class si_svolge_memoria(models.Model):
     IDDecade= models.ForeignKey(Decade)
     IDluogo= models.ForeignKey(Comune)
     IDMemoria=models.ForeignKey(Memoria)
-    anno= models.DateTimeField('anno')
-    mese= models.DateTimeField('mese')
-    giorno= models.DateTimeField('giorno')
+    anno_nascita= models.CharField(max_length = 4)
+    mese_nascita= models.CharField(max_length = 2)
+    giorno_nascita= models.CharField(max_length = 2)
     
 
 
@@ -70,6 +70,6 @@ class si_svolge_Suggerimento (models.Model):
     IDDecade= models.ForeignKey(Decade)
     IDluogo= models.ForeignKey(Comune)
     IDSuggerimento=models.ForeignKey(Suggerimento)
-    anno= models.DateTimeField('anno')
-    mese= models.DateTimeField('mese')
-    giorno= models.DateTimeField('giorno')
+    anno_nascita= models.CharField(max_length = 4)
+    mese_nascita= models.CharField(max_length = 2)
+    giorno_nascita= models.CharField(max_length = 2)

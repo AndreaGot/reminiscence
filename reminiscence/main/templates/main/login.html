@@ -253,7 +253,7 @@ function redirect() {
 
 <body class="bodyGround" > 
 <div  class="loginDiv"style="background-color:#00ff00;height:350px;width:350px;margin: auto;">
-<form  class="form-container" name="MyForm" method="POST">
+<form  class="form-container" action="{% url 'main:verifica' %} name="MyForm" method="POST">
 {% csrf_token %} 
 <div class="form-title" id="title"><h2>Log in</h2></div>
 <div class="form-title">Name</div>

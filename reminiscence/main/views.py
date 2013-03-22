@@ -28,9 +28,15 @@ def login(request):
 	return render(request, 'main/login.html')
 
 def verifica(request):
-	nome = request.POST.get('firstname')
-	password = request.POST.get('password')
-	context = {'name':nome, 'pass':password}
+	name = request.POST.get('firstname')
+	passw = request.POST.get('password')
+	
+	b = Anziano.objects.get(nome = str(name))
+	if passw == b.password:
+	    risp = 'SI'
+	else:
+		risp = 'NO'
+	context = {'name':name, 'pass': str(b.password), 'risp':risp}
 	return render(request, 'main/verifica.html', context)
 	
 	
