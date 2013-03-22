@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     
     url(r'^main/', include('reminiscence.main.urls', namespace="main")),
     url(r'^admin/', include(admin.site.urls)),
+   
 )
