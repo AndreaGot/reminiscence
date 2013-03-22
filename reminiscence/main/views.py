@@ -26,16 +26,26 @@ def login(request):
 	#anziano = Anziano.objects.create
 	#context = {'anziano', anziano}
 	return render(request, 'main/login.html')
+	
+def nuovologin(request):
+	#anziano = Anziano.objects.create
+	#context = {'anziano', anziano}
+	return render(request, 'main/nuovologin.html')
 
 def verifica(request):
 	name = request.POST.get('firstname')
 	passw = request.POST.get('password')
 	
 	b = Anziano.objects.get(nome = str(name))
+	
+	
 	if passw == b.password:
 	    risp = 'SI'
 	else:
 		risp = 'NO'
+		return nuovologin(request)
+		
+		
 	context = {'name':name, 'pass': str(b.password), 'risp':risp}
 	return render(request, 'main/verifica.html', context)
 	
