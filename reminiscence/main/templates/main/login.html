@@ -177,7 +177,7 @@ box-shadow: 1px 1px 50px #f00;
 
 
 </style>
-<script> //COMMENTARE QUESTO SCRIPT PER ABILITARE IL DEBUG (PAGINA IN CUI VENGONO VISUALIZZATI I DATI IMMESSI)
+<script>
 function removeClass(ele,cls) {
 	if (hasClass(ele,cls)) {
     	var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
@@ -196,12 +196,14 @@ var username=TheForm.firstname.value;
 var password=TheForm.password.value;
 var title=document.getElementById('title');
 var correctData=false;
-if(username.length >= 6 && password.length >= 6)
+
+
+
+if(username== "mario" && password == "rossi")
 {
 correctData=true;	
 }
-
-
+alert(correctData);
 
 
 //  //IMPLEMENT SOME PYTHON CODE HERE
@@ -220,6 +222,9 @@ if(correctData){
 title.innerHTML="Login in corso!";
 title.style.color="#00ff00";
 title.style.fontSize="30px";
+{% load url from future %};
+parent.location = {% url 'main:verifica' %};
+
 }else{
 
 title.innerHTML="Controlla i dati";
@@ -228,6 +233,8 @@ title.style.fontSize="30px";
 var d=document.getElementsByName("password")
 d[0].className = d[0].className + " error";
 setTimeout(function(){removeClass(d[0],"error");title.innerHTML="Log In";title.style.color="#777";},1500);
+
+
 }
 
 
@@ -240,13 +247,13 @@ function redirect() {
 }
 
 
-</script> 
+</script>
 <head>
 </head>
 
 <body class="bodyGround" > 
 <div  class="loginDiv"style="background-color:#00ff00;height:350px;width:350px;margin: auto;">
-<form  class="form-container" name="MyForm" action="{% url 'main:verifica' %}" method="POST">
+<form  class="form-container" action="{% url 'main:verifica' %} name="MyForm" method="POST">
 {% csrf_token %} 
 <div class="form-title" id="title"><h2>Log in</h2></div>
 <div class="form-title">Name</div>
