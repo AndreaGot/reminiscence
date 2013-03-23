@@ -15,11 +15,10 @@ def pagina2(request):
 	return HttpResponse(template.render(context))
 
 def luoghi(request):
-	comune = Comune.objects.all()
-	provincia = Provincia.objects.get(pk=1)
-	regione = Regione.objects.get(pk=21)
-	comprov = Regione.objects.all()
-	context = {'comune':comune, 'prov':provincia, 'reg':regione, 'comprov':comprov}
+	comune = 1
+	regione = 2
+	comprov = 3
+	context = {'comune':comune,'reg':regione, 'comprov':comprov}
 	return render(request, 'main/luoghi.html', context)
 	
 def login(request):
@@ -39,7 +38,7 @@ def verifica(request):
 	    risp = 'SI'
 	else:
 	    risp = 'NO'
-	    return login(request)
+	    
 		
 		
 	context = {'name':name, 'pass': str(b.password), 'risp':risp}
