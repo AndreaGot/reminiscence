@@ -2,27 +2,30 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-	
-		<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="aggiungiRicordo.js"></script>
+	    {% load staticfiles %}
+		<script src="{% static 'js/jquery-1.9.1.min.js' %}"></script>
+		<script src="{% static 'js/AddRicordo.js' %}"></script>
 		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 		<title>
-			Riminiscence - Aggiungi ricordo
+			Reminiscence - Aggiungi ricordo
 		</title>
 		
 	</head>
 	<body>
+	CONTROLLA I DATI
+	{% load url from future %}
 		<div id="container">
-			<form id="contactform" class="rounded" method="post" action="">
+			<form id="contactform" class="rounded"  name="contactform" method="POST" action="{% url 'main:add2' %}">
+			{% csrf_token %}
 			<div id="dove>
 				<label for="dove">Dove è successo?</label>
-				<input id="tags" type="text" />
+				<input id="luogo" type="text" method="POST"/>
 			</div>
 			<div id="quando">
 				<div data-role="fieldcontain">
 					<label for="quando-decade" class="select"> Quando è successo</label>
-						<select name="select-choice-1" id="select-choice-1">
+						<select name="select-choice-1" id="select-choice-1" method="POST">
 							<option value="20s">Anni '20</option>
 							<option value="30s">Anni '30</option>
 							<option value="40s">Anni '40</option>
@@ -33,9 +36,9 @@
 							<option value="90s">Anni '90</option>
 						</select>
 				</div>
-				<input type="number" name="number" pattern="[0-9]*" id="number-pattern" value="1920" placeholder="Pattern attribute [0-9]* for a numeric keypad" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset">
+				<input type="number" name="anno" pattern="[0-9]*" id="number-pattern" value="1920" placeholder="Pattern attribute [0-9]* for a numeric keypad" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" method="POST">
 				<div data-role="fieldcontain">
-						<select name="quando-mese" id="select-choice-1">
+						<select name="quando-mese" id="select-choice-1" method="POST">
 							<option value="gen">gennaio</option>
 							<option value="feb">febbraio</option>
 							<option value="mar">marzo</option>
@@ -53,10 +56,10 @@
 			</div>
 			<div id="conchi">
 				<label for="conchi">Con chi eri quando è successo?</label>
-				<input id="tagwith" type="text" />
+				<input id="tagwith" name="conchi" type="text" method="POST" />
 			
 			</div>
-				<input type="button" value="Avanti" onclick="top.location.href = 'aggiungiRicordo2.html'" />
+				<input type="submit" value="Avanti"/>
 
 			</form>
 		</div>

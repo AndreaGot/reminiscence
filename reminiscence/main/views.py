@@ -38,7 +38,16 @@ def add(request):
 
 #verifica i dati aggiunti in aggiungiRicordo
 def verificaAdd(request):
-    return render(request, 'main/aggiungiRicordo2.html')
+    dove = request.POST.get('dove')
+    #quando-decade = request.POST('quando-decade')
+    #quando-mese = request.POST('quando-mese')
+    anno = request.POST.get('quando-anno')
+    conchi = request.POST.get('conchi')
+
+    if dove != "" and anno != "" and  conchi != "":  
+	    return render(request, 'main/aggiungiRicordo2.html')
+    else:
+		return render(request, 'main/aggiungiRicordoErr.html')
 
 
 #verifica i dati aggiunti nella schermata di login ed effettua, se corretti, il login stesso
