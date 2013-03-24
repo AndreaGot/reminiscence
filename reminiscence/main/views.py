@@ -4,6 +4,8 @@ from django.template import Context, loader
 from django.shortcuts import render
 from reminiscence.main.models import Comune, Provincia, Regione, Anziano
 
+# metodo di chiamata non efficiente qui sotto
+
 def index(request):
 	template = loader.get_template('main/index.html')
 	context = Context({})
@@ -20,28 +22,39 @@ def luoghi(request):
 	comprov = 3
 	context = {'comune':comune,'reg':regione, 'comprov':comprov}
 	return render(request, 'main/luoghi.html', context)
+
+# metodo di chiamata piu efficiente (request sempre necessario)
 	
+	
+#pagina di login	
 def login(request):
-	#anziano = Anziano.objects.create
-	#context = {'anziano', anziano}
 	return render(request, 'main/login.html')
+	
+	
+	
+#aggiunta ricordo, pagina 1...	
+def add(request):
+	return render(request, 'main/aggiungiRicordo.html')
+
+#verifica i dati aggiunti in aggiungiRicordo
+def verificaAdd(request):
+    return render(request, 'main/aggiungiRicordo2.html')
 
 
+#verifica i dati aggiunti nella schermata di login ed effettua, se corretti, il login stesso
 def verifica(request):
 	name = request.POST.get('firstname')
 	passw = request.POST.get('password')
 	
 	b = Anziano.objects.get(nome = str(name))
 	
-	
 	if passw == b.password:
 	    risp = 'SI'
 	else:
-	    risp = 'NO'
+	    return render(request, 'main/login.html')
 	    
-		
-		
 	context = {'name':name, 'pass': str(b.password), 'risp':risp}
 	return render(request, 'main/verifica.html', context)
-	
-	
+
+
+
