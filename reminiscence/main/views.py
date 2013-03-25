@@ -55,7 +55,10 @@ def verifica(request):
 	name = request.POST.get('firstname')
 	passw = request.POST.get('password')
 	
-	b = Anziano.objects.get(nome = str(name))
+	b = get_or_none(Anziano,nome=name)
+	
+	if b is None:
+	    return render(request, 'main/login.html')
 	
 	if passw == b.password:
 	    risp = 'SI'
@@ -66,4 +69,10 @@ def verifica(request):
 	return render(request, 'main/verifica.html', context)
 
 
+#funzione che controlla se un record esiste
+def get_or_none(model, **kwargs):
+    try:
+        return model.objects.get(**kwargs)
+    except model.DoesNotExist:
+        return None
 
