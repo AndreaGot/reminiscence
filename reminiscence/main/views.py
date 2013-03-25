@@ -69,10 +69,12 @@ def verifica(request):
 	return render(request, 'main/verifica.html', context)
 
 
-#funzione che controlla se un record esiste
+#funzione che controlla se un record esiste. CONSIGLIO DI USARLA OGNI VOLTA CHE SERVE PRELEVARE UN RECORD
 def get_or_none(model, **kwargs):
     try:
         return model.objects.get(**kwargs)
     except model.DoesNotExist:
         return None
+        
+#se serve prelevare più di un record, usare model.objects.filter(cond)
 
