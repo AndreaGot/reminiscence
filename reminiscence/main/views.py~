@@ -41,7 +41,7 @@ def verificaAdd(request):
     dove = request.POST.get('dove')
     #quando-decade = request.POST('quando-decade')
     #quando-mese = request.POST('quando-mese')
-    anno = request.POST.get('anno')
+    anno = request.POST.get('quando-anno')
     conchi = request.POST.get('conchi')
 
     if dove != "" and anno != "" and  conchi != "":  
