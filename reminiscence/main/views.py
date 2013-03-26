@@ -76,5 +76,5 @@ def get_or_none(model, **kwargs):
     except model.DoesNotExist:
         return None
         
-#se serve prelevare più di un record, usare model.objects.filter(cond)
+#se serve prelevare piu di un record, usare model.objects.filter(cond)
 
