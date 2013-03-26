@@ -92,7 +92,7 @@ def verificaAdd(request):
 
 def verificaAdd2(request):
 
-	#SE I DATI NON SONO CORRETTI CHIAMA IL TEMPLATE aggiungiRicordo2Err (già creato in main/aggiungi/aggiungiRicordo2Err)
+	#SE I DATI NON SONO CORRETTI CHIAMA IL TEMPLATE aggiungiRicordo2Err (gia creato in main/aggiungi/aggiungiRicordo2Err)
 	return render(request,'main/aggiungi/confermaInsert.html')
 
 
