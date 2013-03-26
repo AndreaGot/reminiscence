@@ -93,6 +93,11 @@ def verificaAdd(request):
 def verificaAdd2(request):
 
 	#SE I DATI NON SONO CORRETTI CHIAMA IL TEMPLATE aggiungiRicordo2Err (gia creato in main/aggiungi/aggiungiRicordo2Err)
+	titolo= request.POST.get('titolo')
+	descrizione = request.POST.get('descrizione')
+
+	if titolo == "" or descrizione == "":
+		return render(request, 'main/aggiungi/aggiungiRicordo2Err.html')
 	return render(request,'main/aggiungi/confermaInsert.html')
 
 
