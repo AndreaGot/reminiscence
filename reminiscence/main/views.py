@@ -38,18 +38,17 @@ def add(request):
 
 #verifica i dati aggiunti in aggiungiRicordo
 def verificaAdd(request):
-    dove = request.POST.get('dove')
-    #quando-decade = request.POST('quando-decade')
-    #quando-mese = request.POST('quando-mese')
-    anno = request.POST.get('anno')
-    conchi = request.POST.get('conchi')
-	esiste_citta= get_or_none(Comune,dove=comune)
+	dove = request.POST.get('dove')
+	#quando-decade = request.POST('quando-decade')
+	#quando-mese = request.POST('quando-mese')
+	anno = request.POST.get('anno')
+	conchi = request.POST.get('conchi')
+	esiste_citta= get_or_none(Comune,comune=dove)
 
 
-
-    if dove != "" and anno != "" and  conchi != "":  
-	    return render(request, 'main/aggiungiRicordo2.html')
-    elif esiste_citta is None:
+	if dove != "" and anno != "" and  conchi != "":  
+		return render(request, 'main/aggiungiRicordo2.html')
+	elif esiste_citta is None:
 		return render(request,'main/datierrati.html')
 	else:
 		return render(request, 'main/aggiungiRicordoErr.html')
@@ -63,12 +62,12 @@ def verifica(request):
 	b = get_or_none(Anziano,nome=name)
 	
 	if b is None:
-	    return render(request, 'main/login.html')
+		return render(request, 'main/login.html')
 	
 	if passw == b.password:
-	    risp = 'SI'
+		risp = 'SI'
 	else:
-	    return render(request, 'main/login.html')
+		return render(request, 'main/login.html')
 	    
 	context = {'name':name, 'pass': str(b.password), 'risp':risp}
 	return render(request, 'main/verifica.html', context)
@@ -76,10 +75,10 @@ def verifica(request):
 
 #funzione che controlla se un record esiste. CONSIGLIO DI USARLA OGNI VOLTA CHE SERVE PRELEVARE UN RECORD
 def get_or_none(model, **kwargs):
-    try:
-        return model.objects.get(**kwargs)
-    except model.DoesNotExist:
-        return None
+	try:
+		return model.objects.get(**kwargs)
+	except model.DoesNotExist:
+		return None
         
 #se serve prelevare piu di un record, usare model.objects.filter(cond)
 
