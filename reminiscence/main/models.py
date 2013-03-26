@@ -38,8 +38,6 @@ class Memoria(models.Model):
     IDAnziano=models.ForeignKey(Anziano)
     titolo= models.CharField(max_length=200)
     descrizione= models.CharField(max_length=1000)
-    foto=models.ImageField(upload_to="Immagine.jpg")
-    link= models.CharField(max_length=200)
     def __unicode__(self):
 		return str(self.titolo)
 
@@ -64,8 +62,6 @@ class si_svolge_memoria(models.Model):
     mese= models.CharField(max_length = 2)
     giorno= models.CharField(max_length = 2)
     
-
-
 class si_svolge_Suggerimento (models.Model):
     IDDecade= models.ForeignKey(Decade)
     IDSuggerimento=models.ForeignKey(Suggerimento)
@@ -73,3 +69,10 @@ class si_svolge_Suggerimento (models.Model):
     anno= models.CharField(max_length = 4)
     mese= models.CharField(max_length = 2)
     giorno= models.CharField(max_length = 2)
+    
+class Media (models.Model):
+	IDMemoria = models.ForeignKey(Memoria)
+	titolo = models.CharField(max_length=203)
+	descrizione = models.CharField(max_length=300)
+	link = models.CharField(max_length=200)
+	
