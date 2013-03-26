@@ -38,18 +38,18 @@ def add(request):
 
 #verifica i dati aggiunti in aggiungiRicordo
 def verificaAdd(request):
-	dove = request.POST.get('dove')
+	dove = request.POST.get('luogo')
 	#quando-decade = request.POST('quando-decade')
 	#quando-mese = request.POST('quando-mese')
 	anno = request.POST.get('anno')
 	conchi = request.POST.get('conchi')
 	esiste_citta= get_or_none(Comune,comune=dove)
 
-
-	if dove != "" and anno != "" and  conchi != "":  
+	if esiste_citta is None:
+		context = {'dove':dove}
+		return render(request,'main/datierrati.html', context)
+	elif esiste_citta is not None and anno != "" and  conchi != "":  
 		return render(request, 'main/aggiungiRicordo2.html')
-	elif esiste_citta is None:
-		return render(request,'main/datierrati.html')
 	else:
 		return render(request, 'main/aggiungiRicordoErr.html')
 
