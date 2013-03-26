@@ -58,18 +58,18 @@ class Suggerimento(models.Model):
 		
 class si_svolge_memoria(models.Model):
     IDDecade= models.ForeignKey(Decade)
-    IDluogo= models.ForeignKey(Comune)
     IDMemoria=models.ForeignKey(Memoria)
-    anno_nascita= models.CharField(max_length = 4)
-    mese_nascita= models.CharField(max_length = 2)
-    giorno_nascita= models.CharField(max_length = 2)
+    luogo = models.CharField(max_length=50)
+    anno= models.CharField(max_length = 4)
+    mese= models.CharField(max_length = 2)
+    giorno= models.CharField(max_length = 2)
     
 
 
 class si_svolge_Suggerimento (models.Model):
     IDDecade= models.ForeignKey(Decade)
-    IDluogo= models.ForeignKey(Comune)
     IDSuggerimento=models.ForeignKey(Suggerimento)
-    anno_nascita= models.CharField(max_length = 4)
-    mese_nascita= models.CharField(max_length = 2)
-    giorno_nascita= models.CharField(max_length = 2)
+    luogo = models.CharField(max_length=50)
+    anno= models.CharField(max_length = 4)
+    mese= models.CharField(max_length = 2)
+    giorno= models.CharField(max_length = 2)
