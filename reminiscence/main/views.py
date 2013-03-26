@@ -28,8 +28,8 @@ def luoghi(request):
 	
 #pagina di login	
 def login(request):
-	return render(request, 'main/login.html')
-	
+	return render(request, 'main/login/login.html')
+
 	
 	
 #aggiunta ricordo, pagina 1...	
@@ -64,15 +64,15 @@ def verifica(request):
 	b = get_or_none(Anziano,nome=name)
 	
 	if b is None:
-		return render(request, 'main/login.html')
+		return render(request, 'main/login/login.html')
 	
 	if passw == b.password:
 		risp = 'SI'
 	else:
-		return render(request, 'main/login.html')
+		return render(request, 'main/login/login.html')
 	    
 	context = {'name':name, 'pass': str(b.password), 'risp':risp}
-	return render(request, 'main/verifica.html', context)
+	return render(request, 'main/login/verifica.html', context)
 
 
 
