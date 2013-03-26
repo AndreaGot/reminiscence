@@ -43,10 +43,15 @@ def verificaAdd(request):
     #quando-mese = request.POST('quando-mese')
     anno = request.POST.get('anno')
     conchi = request.POST.get('conchi')
+	esiste_citta= get_or_none(Comune,dove=comune)
+
+
 
     if dove != "" and anno != "" and  conchi != "":  
 	    return render(request, 'main/aggiungiRicordo2.html')
-    else:
+    elif esiste_citta is None:
+		return render(request,'main/datierrati.html')
+	else:
 		return render(request, 'main/aggiungiRicordoErr.html')
 
 
