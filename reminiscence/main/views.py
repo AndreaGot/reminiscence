@@ -25,38 +25,19 @@ def luoghi(request):
 
 # metodo di chiamata piu efficiente (request sempre necessario)
 	
+
+
+#
+# PAGINA DI LOGIN
+#
+
+#Visualizza la pagina di login
 	
-#pagina di login	
 def login(request):
 	return render(request, 'main/login/login.html')
 
-	
-	
-#aggiunta ricordo, pagina 1...	
-def add(request):
-	return render(request, 'main/aggiungiRicordo.html')
+#Verifica i dati inseriti nella pagina di login
 
-#verifica i dati aggiunti in aggiungiRicordo
-def verificaAdd(request):
-	dove = request.POST.get('luogo')
-	quando_decade = request.POST.get('quando-decade')
-	quando_mese = request.POST.get('quando-mese')
-	anno = request.POST.get('anno')
-	conchi = request.POST.get('conchi')
-	esiste_citta= get_or_none(Comune,comune=dove)
-
-	
-
-	if esiste_citta is None:
-		context = {'dove':dove}
-		return render(request,'main/datierrati.html', context)
-	elif esiste_citta is not None and anno != "" and  conchi != "":  
-		return render(request, 'main/aggiungiRicordo2.html')
-	else:
-		return render(request, 'main/aggiungiRicordoErr.html')
-
-
-#verifica i dati aggiunti nella schermata di login ed effettua, se corretti, il login stesso
 def verifica(request):
 	name = request.POST.get('firstname')
 	passw = request.POST.get('password')
@@ -75,10 +56,51 @@ def verifica(request):
 	return render(request, 'main/login/verifica.html', context)
 
 
+	
+	
+	
+#
+# INSERIMENTO RICORDO 
+#	
+	
+#aggiunta ricordo, pagina 1...	
+def add(request):
+	return render(request, 'main/aggiungi/aggiungiRicordo.html')
 
+#verifica i dati aggiunti in aggiungiRicordo
+
+
+def verificaAdd(request):
+	dove = request.POST.get('luogo')
+	quando_decade = request.POST.get('quando-decade')
+	quando_mese = request.POST.get('quando-mese')
+	anno = request.POST.get('anno')
+	conchi = request.POST.get('conchi')
+	esiste_citta= get_or_none(Comune,comune=dove)
+
+	if esiste_citta is None:
+		context = {'dove':dove}
+		return render(request,'main/aggiungi/datierrati.html', context)
+	elif esiste_citta is not None and anno != "" and  conchi != "":  
+		return render(request, 'main/aggiungi/aggiungiRicordo2.html')
+	else:
+		return render(request, 'main/aggiungi/aggiungiRicordoErr.html')
+
+
+
+# Se la seconda parte e corretta, chiama una pagina di conferma
 
 def verificaAdd2(request):
-	return render(request,'main/confermaInsert.html')
+	return render(request,'main/aggiungi/confermaInsert.html')
+
+
+
+
+#
+#QUI SOTTO INSERIRE SOLO LE FUNZIONI GENERICHE
+#
+
+
 
 
 #funzione che controlla se un record esiste. CONSIGLIO DI USARLA OGNI VOLTA CHE SERVE PRELEVARE UN RECORD
