@@ -91,6 +91,8 @@ def verificaAdd(request):
 # Se la seconda parte e corretta, chiama una pagina di conferma
 
 def verificaAdd2(request):
+
+	#SE I DATI NON SONO CORRETTI CHIAMA IL TEMPLATE aggiungiRicordo2Err (già creato in main/aggiungi/aggiungiRicordo2Err)
 	return render(request,'main/aggiungi/confermaInsert.html')
 
 
