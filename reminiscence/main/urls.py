@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     url(r'^verifica/', views.verifica, name='verifica'),
     url(r'^add/', views.add, name='add'),
     url(r'^add2/', views.verificaAdd, name='add2'),
+    url(r'^add3/', views.verificaAdd2, name='add3'),
     
 )

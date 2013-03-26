@@ -73,6 +73,12 @@ def verifica(request):
 	return render(request, 'main/verifica.html', context)
 
 
+
+
+def verificaAdd2(request):
+	return render(request,'main/confermaInsert.html')
+
+
 #funzione che controlla se un record esiste. CONSIGLIO DI USARLA OGNI VOLTA CHE SERVE PRELEVARE UN RECORD
 def get_or_none(model, **kwargs):
 	try:

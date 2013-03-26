@@ -14,15 +14,15 @@
 	</head>
 	<body>
 		<div id="container">
-			<form id="contactform" class="rounded" method="post" action=""> 
+			<form id="contactform" class="rounded" method="post" action="{% url 'main:add3' %}"> 
 			{% csrf_token %}
-			<div id="titolo>
-				<label for="titolo">Titolo</label>
-				<input id="titolo" type="text" />
+			<div id="titolo">
+				<label for="titolo" >Titolo</label>
+				<input id="titolo" name="titolo" type="text" />
 			</div>
-			<div id="descrizione>
+			<div id="descrizione">
 				<label for="descrizione">descrizione</label>
-				<input id="descrizione" type="text" />
+				<input id="descrizione" name="descrizione" type="text" />
 			</div>
 			<div id="foto">
 				<button>Foto</button>
