@@ -39,11 +39,13 @@ def add(request):
 #verifica i dati aggiunti in aggiungiRicordo
 def verificaAdd(request):
 	dove = request.POST.get('luogo')
-	#quando-decade = request.POST('quando-decade')
-	#quando-mese = request.POST('quando-mese')
+	quando_decade = request.POST.get('quando-decade')
+	quando_mese = request.POST.get('quando-mese')
 	anno = request.POST.get('anno')
 	conchi = request.POST.get('conchi')
 	esiste_citta= get_or_none(Comune,comune=dove)
+
+	
 
 	if esiste_citta is None:
 		context = {'dove':dove}
