@@ -13,32 +13,38 @@
 		
 	</head>
 	<body>
-	CONTROLLA I DATI
 	{% load url from future %}
 		<div id="container">
 			<form id="contactform" class="rounded"  name="contactform" method="POST" action="{% url 'main:add2' %}">
 			{% csrf_token %}
 			<div id="dove>
 				<label for="dove">Dove è successo?</label>
-				<input id="luogo" type="text" method="POST"/>
+				<input name="luogo" id="luogo" type="text"/>
 			</div>
 			<div id="quando">
 				<div data-role="fieldcontain">
 					<label for="quando-decade" class="select"> Quando è successo</label>
-						<select name="select-choice-1" id="select-choice-1" method="POST">
-							<option value="20s">Anni '20</option>
-							<option value="30s">Anni '30</option>
-							<option value="40s">Anni '40</option>
-							<option value="50s">Anni '50</option>
-							<option value="60s">Anni '60</option>
-							<option value="70s">Anni '70</option>
-							<option value="80s">Anni '80</option>
-							<option value="90s">Anni '90</option>
+						<select name="quando-decade" id="select-choice-1">
+							<option value="1920">Anni '20</option>
+							<option value="1930">Anni '30</option>
+							<option value="1940">Anni '40</option>
+							<option value="1950">Anni '50</option>
+							<option value="1960">Anni '60</option>
+							<option value="1970">Anni '70</option>
+							<option value="1980">Anni '80</option>
+							<option value="1990">Anni '90</option>
 						</select>
 				</div>
-				<input type="number" name="anno" pattern="[0-9]*" id="number-pattern" value="1920" placeholder="Pattern attribute [0-9]* for a numeric keypad" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" method="POST">
+				<label for="anno"> Ricordi l'anno esatto? </label>
+				<input type="number" name="anno" pattern="[0-9]*" id="number-pattern" value="1920" class="select">
+				<script>var select = document.getElementById('select-choice-1');
+					var input = document.getElementById('number-pattern');
+					select.onchange = function() { input.value = select.value }
+				</script>
+				
 				<div data-role="fieldcontain">
-						<select name="quando-mese" id="select-choice-1" method="POST">
+						<label for="quando-mese">E il mese?</label>
+						<select name="quando-mese" id="select-choice-2">
 							<option value="gen">gennaio</option>
 							<option value="feb">febbraio</option>
 							<option value="mar">marzo</option>
@@ -56,7 +62,8 @@
 			</div>
 			<div id="conchi">
 				<label for="conchi">Con chi eri quando è successo?</label>
-				<input id="tagwith" name="conchi" type="text" method="POST" />
+				<input id="tagwith" name="conchi" type="text" />
+				
 			
 			</div>
 				<input type="submit" value="Avanti"/>
