@@ -96,7 +96,7 @@ def verificaAdd(request):
 		#preleva ID Anziano (da modificare, deve prendere l'id dell'anziano loggato)	
 		a=Anziano.objects.get(nome='Andrea')
 		
-		#crea un nuovo record in Memoria inizializzandolo solo con IDAnziano e conchi, il resto verrà aggiunto dopo (necessario per creare si_svolge_memoria)
+		#crea un nuovo record in Memoria inizializzandolo solo con IDAnziano e conchi, il resto verra aggiunto dopo (necessario per creare si_svolge_memoria)
 		m=Memoria(IDAnziano=a, conchi=con)
 		m.save()
 		
@@ -124,7 +124,7 @@ def verificaAdd2(request):
 	titolo= request.POST.get('titolo')
 	descrizione = request.POST.get('descrizione')
 	
-	#input nascosta, all'interno c'è il valore del pk Memoria salvato nella pagina prima
+	#input nascosta, all'interno c'e il valore del pk Memoria salvato nella pagina prima
 	a = int(request.POST.get('a'))
 
 	if titolo == "" or descrizione == "":
