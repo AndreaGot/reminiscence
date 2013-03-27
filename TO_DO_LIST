@@ -1,9 +1,5 @@
 Inserire qui i compiti da svolgere (e rimuovere quelli svolti)
 
--  Iniziare il salvataggio di una memoria
-  -  Come passare il parametro dell'id utente alla seconda pagina?
-  -  Dalla prima alla seconda pagina ci sono motli modi per salvare i dati (context, salvarli parzialmente per poi eventualmente modificarli.. dobbiamo parlarne)
-  -  Ho inserito un campo nascosto nella pagina AggiungiRicordo2, pensavo per poter ripescare l'ID utente senza fare giri strani
 -  Inserire pagine filler (vuote, ma di struttura funzionante):
   -  Ricerca amici
   -  Impostazioni [Solo se non si ha altro da fare, non è importante]
