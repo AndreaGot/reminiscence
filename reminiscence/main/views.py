@@ -103,8 +103,10 @@ def verificaAdd(request):
 #Bisogna inserire il conchi nella funzione qua sopra!
 		s.save()
   
-		context={'memoria':m}
-		return render(request, 'main/aggiungi/aggiungiRicordo2.html')
+		context={'memoria':m.pk}
+	
+		
+		return render(request, 'main/aggiungi/aggiungiRicordo2.html', context)
 	else:
 		return render(request, 'main/aggiungi/aggiungiRicordoErr.html')
 
@@ -118,9 +120,17 @@ def verificaAdd2(request):
 
 	titolo= request.POST.get('titolo')
 	descrizione = request.POST.get('descrizione')
+	a = int(request.POST.get('a'))
 
 	if titolo == "" or descrizione == "":
 		return render(request, 'main/aggiungi/aggiungiRicordo2Err.html')
+
+	mem = Memoria.objects.get(pk = a)
+	mem.titolo = titolo
+	mem.descrizione = descrizione
+	mem.save()
+	
+	
 	return render(request,'main/aggiungi/confermaInsert.html')
 
 
