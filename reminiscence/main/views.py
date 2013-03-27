@@ -2,7 +2,7 @@
 from django.http import HttpResponse
 from django.template import Context, loader
 from django.shortcuts import render
-from reminiscence.main.models import Comune, Provincia, Regione, Anziano
+from reminiscence.main.models import Comune, Provincia, Regione, Anziano,Memoria,si_svolge_memoria,Decade
 
 # metodo di chiamata non efficiente qui sotto
 
@@ -91,14 +91,26 @@ def verificaAdd(request):
 	if esiste_citta is None:
 		context = {'dove':dove}
 		return render(request,'main/aggiungi/datierrati.html', context)
-	elif esiste_citta is not None and anno != "" and  conchi != "":  
+	elif esiste_citta is not None and anno != "":
+		a=Anziano.objects.get(nome='Andrea')
+		
+		m=Memoria(IDAnziano=a)
+		m.save()
+
+		d=Decade.objects.get(decade=quando_decade)
+		
+		s=si_svolge_memoria(IDDecade=d,IDMemoria=m,luogo=dove,anno=anno,mese=quando_mese)
+#Bisogna inserire il conchi nella funzione qua sopra!
+		s.save()
+  
+		context={'memoria':m}
 		return render(request, 'main/aggiungi/aggiungiRicordo2.html')
 	else:
 		return render(request, 'main/aggiungi/aggiungiRicordoErr.html')
 
 
 
-# Se la seconda parte e corretta, chiama una pagina di conferma
+# Se la seconda parte e corretta, chiama una pagina di confer1111ma
 
 def verificaAdd2(request):
 
