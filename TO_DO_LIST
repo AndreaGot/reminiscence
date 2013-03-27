@@ -5,7 +5,6 @@ Inserire qui i compiti da svolgere (e rimuovere quelli svolti)
   -  Dalla prima alla seconda pagina ci sono motli modi per salvare i dati (context, salvarli parzialmente per poi eventualmente modificarli.. dobbiamo parlarne)
   -  Ho inserito un campo nascosto nella pagina AggiungiRicordo2, pensavo per poter ripescare l'ID utente senza fare giri strani
 -  Inserire pagine filler (vuote, ma di struttura funzionante):
-  -  Memories (visualizza)
-  -  Iscrizione (con link in login)
   -  Ricerca amici
   -  Impostazioni [Solo se non si ha altro da fare, non è importante]
+- Far funzionare il tasto Create Account nella pagina di login (manca un quancle attributo per far funzionare il bottone, ma non so quale)

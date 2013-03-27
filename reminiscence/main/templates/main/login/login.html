@@ -90,7 +90,7 @@ function redirect() {
 <input class="submit-button" type="submit" value="Submit" onclick="checkValues(event)" style="width:40%;"/>
 <span style="width:5%">or</span>
 
-<input class="create-account" onClick="parent.location='http://www.google.com/'"  type="button" value="Create Account" style="width:50%;"/>
+<input class="create-account"  type="button" value="Create Account" style="width:50%;" onclick="{% url 'main:iscrizione' %}"/>
 </div>
 </form>
 </div>

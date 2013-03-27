@@ -55,9 +55,19 @@ def verifica(request):
 	context = {'name':name, 'pass': str(b.password), 'risp':risp}
 	return render(request, 'main/login/verifica.html', context)
 
+#
+# PAGINA DI ISCRIZIONE
+#
 
+def iscrizione(request):
+	return render(request, 'main/iscrizione.html')
 	
-	
+#
+# HOMEPAGE (PAGINA VISUALIZZAZIONE MEMORIA)
+#	
+
+def visualizzaRicordi(request):
+	return render(request, 'main/home.html')
 	
 #
 # INSERIMENTO RICORDO 
