@@ -38,6 +38,7 @@ class Memoria(models.Model):
     IDAnziano=models.ForeignKey(Anziano)
     titolo= models.CharField(max_length=200)
     descrizione= models.CharField(max_length=1000)
+    conchi = models.CharField(max_length=200)
     def __unicode__(self):
 		return str(self.titolo)
 
