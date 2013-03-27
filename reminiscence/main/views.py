@@ -85,27 +85,30 @@ def verificaAdd(request):
 	quando_decade = request.POST.get('quando-decade')
 	quando_mese = request.POST.get('quando-mese')
 	anno = request.POST.get('anno')
-	conchi = request.POST.get('conchi')
+	con = request.POST.get('conchi')
 	esiste_citta= get_or_none(Comune,comune=dove)
 
 	if esiste_citta is None:
 		context = {'dove':dove}
 		return render(request,'main/aggiungi/datierrati.html', context)
 	elif esiste_citta is not None and anno != "":
+		
+		#preleva ID Anziano (da modificare, deve prendere l'id dell'anziano loggato)	
 		a=Anziano.objects.get(nome='Andrea')
 		
-		m=Memoria(IDAnziano=a)
+		#crea un nuovo record in Memoria inizializzandolo solo con IDAnziano e conchi, il resto verrà aggiunto dopo (necessario per creare si_svolge_memoria)
+		m=Memoria(IDAnziano=a, conchi=con)
 		m.save()
-
+		
+		#associa a d il record Decade corrispondente al valore della form select
 		d=Decade.objects.get(decade=quando_decade)
 		
+		#crea si_svolge_memoria con tutti i campi inseriti
 		s=si_svolge_memoria(IDDecade=d,IDMemoria=m,luogo=dove,anno=anno,mese=quando_mese)
-#Bisogna inserire il conchi nella funzione qua sopra!
 		s.save()
-  
-		context={'memoria':m.pk}
-	
 		
+		#passa il valore di m.pk alla pagina successiva (necessario per trovare id memoria senza fare giri strani)
+		context={'memoria':m.pk}
 		return render(request, 'main/aggiungi/aggiungiRicordo2.html', context)
 	else:
 		return render(request, 'main/aggiungi/aggiungiRicordoErr.html')
@@ -120,11 +123,15 @@ def verificaAdd2(request):
 
 	titolo= request.POST.get('titolo')
 	descrizione = request.POST.get('descrizione')
+	
+	#input nascosta, all'interno c'è il valore del pk Memoria salvato nella pagina prima
 	a = int(request.POST.get('a'))
 
 	if titolo == "" or descrizione == "":
 		return render(request, 'main/aggiungi/aggiungiRicordo2Err.html')
-
+   
+   
+    #prende il valore contenuto nell'input nascosta (a) e lo usa per raggiungere il record memoria creato in precedenza. A questo punto salva le informazioni ricevute.
 	mem = Memoria.objects.get(pk = a)
 	mem.titolo = titolo
 	mem.descrizione = descrizione
