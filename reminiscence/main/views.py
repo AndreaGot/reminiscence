@@ -96,15 +96,15 @@ def verificaAdd(request):
 		#preleva ID Anziano (da modificare, deve prendere l'id dell'anziano loggato)	
 		a=Anziano.objects.get(nome='Andrea')
 		
-		#crea un nuovo record in Memoria inizializzandolo solo con IDAnziano e conchi, il resto verra aggiunto dopo (necessario per creare si_svolge_memoria)
-		m=Memoria(IDAnziano=a, conchi=con)
+		#crea un nuovo record in Memoria inizializzandolo solo con IDAnziano, il resto verra aggiunto dopo (necessario per creare si_svolge_memoria)
+		m=Memoria(IDAnziano=a)
 		m.save()
 		
 		#associa a d il record Decade corrispondente al valore della form select
 		d=Decade.objects.get(decade=quando_decade)
 		
 		#crea si_svolge_memoria con tutti i campi inseriti
-		s=si_svolge_memoria(IDDecade=d,IDMemoria=m,luogo=dove,anno=anno,mese=quando_mese)
+		s=si_svolge_memoria(IDDecade=d,IDMemoria=m,conchi=con,luogo=dove,anno=anno,mese=quando_mese)
 		s.save()
 		
 		#passa il valore di m.pk alla pagina successiva (necessario per trovare id memoria senza fare giri strani)

@@ -38,7 +38,6 @@ class Memoria(models.Model):
     IDAnziano=models.ForeignKey(Anziano)
     titolo= models.CharField(max_length=200)
     descrizione= models.CharField(max_length=1000)
-    conchi = models.CharField(max_length=200)
     def __unicode__(self):
 		return str(self.titolo)
 
@@ -58,6 +57,7 @@ class Suggerimento(models.Model):
 class si_svolge_memoria(models.Model):
     IDDecade= models.ForeignKey(Decade)
     IDMemoria=models.ForeignKey(Memoria)
+    conchi = models.CharField(max_length=200)
     luogo = models.CharField(max_length=50)
     anno= models.CharField(max_length = 4)
     mese= models.CharField(max_length = 2)
