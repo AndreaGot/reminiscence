@@ -1,7 +1,9 @@
 Inserire qui i compiti da svolgere (e rimuovere quelli svolti)
 
+-  SISTEMARE DATABASE (Spostare campo "conchi" da Memoria a si_svolge_memoria)
 
--  Ottimizzare la pagina di inserimento (bloccare la creazione di record vuoti se per esempio si sbaglia cittˆ o altro)
+
+-  Ottimizzare la pagina di inserimento (bloccare la creazione di record vuoti se per esempio si sbaglia cittï¿½ o altro)
 -  Inserire pagine filler (vuote, ma di struttura funzionante):
   -  Ricerca amici
   -  Impostazioni [Solo se non si ha altro da fare, non Ã¨ importante]
