@@ -41,6 +41,10 @@ def login(request):
 def verifica(request):
 	name = request.POST.get('firstname')
 	passw = request.POST.get('password')
+	tasto_premuto = request.POST.get('submit')
+
+	if tasto_premuto == 'Crea Account':
+		return iscrizione(request)
 	
 	b = get_or_none(Anziano,nome=name)
 	

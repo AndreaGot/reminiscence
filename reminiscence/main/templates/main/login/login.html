@@ -87,10 +87,11 @@ function redirect() {
 <div class="form-title">Password</div>
 <input class="form-field" type="password" name="password" /><br />
 <div>
-<input class="submit-button" type="submit" value="Submit" onclick="checkValues(event)" style="width:40%;"/>
+<input class="submit-button" type="submit" name="submit" value="Submit" onclick="checkValues(event)" style="width:40%;"/>
 <span style="width:5%">or</span>
 
-<input class="create-account"  type="button" value="Create Account" style="width:50%;" onclick="{% url 'main:iscrizione' %}"/>
+<input class="create-account"  type="submit" name="submit" value="Crea Account" style="width:50%;"/>
+
 </div>
 </form>
 </div>
