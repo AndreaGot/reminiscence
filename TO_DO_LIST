@@ -1,10 +1,7 @@
 Inserire qui i compiti da svolgere (e rimuovere quelli svolti)
 
--  SISTEMARE DATABASE (Spostare campo "conchi" da Memoria a si_svolge_memoria)
-
-
 -  Ottimizzare la pagina di inserimento (bloccare la creazione di record vuoti se per esempio si sbaglia citt� o altro)
 -  Inserire pagine filler (vuote, ma di struttura funzionante):
   -  Ricerca amici
+  -  Migliorare homepage (pagina verifica.html) anche rinominandola e modificando opportunamente le occorrenze
   -  Impostazioni [Solo se non si ha altro da fare, non è importante]
-- Far funzionare il tasto Create Account nella pagina di login (manca un quancle attributo per far funzionare il bottone, ma non so quale)
