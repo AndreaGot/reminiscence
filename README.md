@@ -6,6 +6,6 @@ They can add memories, view them among other memories and suggestions provided b
 
 ---
 
-For further information on how to use GitHub and this app, please refer to https://github.com/AndreaGot/reminiscence/wiki/Utilizzo-del-repository (written in Italian)
+For further information on how to use GitHub and this app, please refer to https://github.com/AndreaGot/reminiscence/wiki (written in Italian)
 
 A little demo of how Reminiscence works is available here: https://www.youtube.com/watch?v=ws-Q8GDI9LE
