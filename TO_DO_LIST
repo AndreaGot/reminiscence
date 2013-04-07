@@ -1,8 +1,33 @@
-Inserire qui i compiti da svolgere (e rimuovere quelli svolti)
+﻿Inserire qui i compiti da svolgere (e rimuovere quelli svolti), in ordine di priorità
+
+PRIORITA' ALTA
+
+-  Linkare tutti i file css e js necessari alla pagina creazioneAccount.html
+
+-  Perfezionare la visualizzazione della pagina creazioneAccount.html
+
+-  salvare i dati nel database
+
+-  trovare un modo per far leggere i tag Django {% url xxx %} anche all'interno di script javascript
+
+
+
+PRIORITA' MEDIA
+
+-  Organizzare in cartelle la cartella static e templates (preferibilmente una parola sola, univoca)
+   -   DOPO LE MODIFICHE IN STATIC: Correggere le occorrenze mancanti nei vari template (modifica il path del file)
 
 -  Ottimizzare la pagina di inserimento (bloccare la creazione di record vuoti se per esempio si sbaglia citt� o altro)
+
 -  Cercare un modo per evitare la creazione di Pagina.html e PaginaErr.html
+
+-  Modificare homepage (pensavo a una pagina introduttiva stile twitter)
+
+
+
+
+PRIORITA' BASSA
+
 -  Inserire pagine filler/placeholder (vuote, ma di struttura funzionante):
   -  Ricerca amici
-  -  Migliorare homepage (pagina verifica.html) anche rinominandola e modificando opportunamente le occorrenze
   -  Impostazioni [Solo se non si ha altro da fare, non è importante]
