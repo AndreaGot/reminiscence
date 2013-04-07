@@ -1,0 +1,62 @@
+ .ui-listview-filter
+        {
+	        background: none;
+        }
+        
+        h1
+        {
+	        font-size: 36px;
+	        font-size-adjust: none;
+	        line-height: 80px;
+	        text-height: max-size;
+        }
+        
+        p.header
+        {
+	        font-size: 45px;
+	        font-size-adjust: none;
+	        text-align: center;
+	        text-height: max-size;
+        }
+        
+        .ui-grid-a
+        {
+	        height: 200px;
+	        width: 100%;
+        }
+        
+        input,a
+        {
+	        height: 55px;
+        }
+        
+        div[data-role="content"]
+        {
+	        line-height: 300%;
+        }
+        
+        a[data-role="button"]
+        {
+	        font-size: 48px;
+	        height: 45px;
+        }
+        
+        div,h2,a
+        {
+	        text-align: center;
+			background-color:inherit;
+        }
+        
+        div[data-role="footer"]
+        {
+	        line-height: 150%;
+        }
+        
+        .ui-icon-photo
+        {
+	        background-image: url(images/photo.png);
+	        background-size: 18px 18px;
+        }
+       .ui-header .ui-btn-inner, .ui-footer .ui-btn-inner, .ui-mini .ui-btn-inner {
+                font-size:16px;
+        }
