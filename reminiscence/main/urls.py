@@ -22,7 +22,7 @@ urlpatterns = patterns('',
 #
 # URL DI ISCRIZIONE AL SERVIZIO
 #
-    url(r'^iscrizione/', views.iscrizione, name='iscrizione'),
+    url(r'^account/', views.account, name='account'),
     
 #
 # URL DI VISUALIZZAZIONE RICORDO

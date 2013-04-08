@@ -63,8 +63,8 @@ def verifica(request):
 # PAGINA DI ISCRIZIONE
 #
 
-def iscrizione(request):
-	return render(request, 'main/iscrizione.html')
+def account(request):
+	return render(request, 'main/account/creazioneAccount.html')
 	
 #
 # HOMEPAGE (PAGINA VISUALIZZAZIONE MEMORIA)
