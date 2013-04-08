@@ -1,4 +1,4 @@
-﻿Inserire qui i compiti da svolgere (e rimuovere quelli svolti), in ordine di priorità
+Inserire qui i compiti da svolgere (e rimuovere quelli svolti), in ordine di priorità
 
 PRIORITA' ALTA
 
@@ -6,7 +6,7 @@ PRIORITA' ALTA
 
 
 
--  salvare i dati nel database
+-  salvare i dati nel database (aggiungi Ricordo)
 
 -  trovare un modo per far leggere i tag Django {% url xxx %} anche all'interno di script javascript
 
