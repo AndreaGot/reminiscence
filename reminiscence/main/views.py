@@ -28,13 +28,19 @@ def luoghi(request):
 #
 # PAGINA DI LOGIN
 #
-
+#
 #Visualizza la pagina di login
-	
+#	
+
+
 def login(request):
 	return render(request, 'main/login/login.html')
 
+
+#
 #Verifica i dati inseriti nella pagina di login
+#
+
 
 def verifica(request):
 	name = request.POST.get('firstname')
@@ -48,13 +54,12 @@ def verifica(request):
 	b = get_or_none(Anziano,nome=name)
 	
 	if b is None:
-		print "b non esiste"
+		
 		return render(request, 'main/login/login.html')
 	
 	if passw == b.password:
 		risp = 'SI'
 	else:
-		print "errore password"
 		return render(request, 'main/login/login.html')
 	    
 	context = {'name':name, 'pass': str(b.password), 'risp':risp}
@@ -66,6 +71,37 @@ def verifica(request):
 
 def account(request):
 	return render(request, 'main/account/creazioneAccount.html')
+
+
+
+#
+# Conferma e verifica dati
+#
+
+def conferma(request):
+
+	user = request.POST.get('username')
+	# com = request.POST.get(('Comlist').val)
+	giorno = request.POST.get('select_choice_day')
+	mese = request.POST.get('select_choice_month')
+	anno = request.POST.get('select_choice_year')
+	pass1 = request.POST.get('password')
+	pass2 = request.POST.get('password2')
+	email = request.POST.get('email')
+	
+	c = get_or_none(Comune,comune='Trento')
+
+	a = Anziano(user, anno, mese, giorno, email, password)
+	
+	a.save()
+
+	return render(request, 'main/account/confermaAccount.html')
+
+
+
+
+
+
 	
 #
 # HOMEPAGE (PAGINA VISUALIZZAZIONE MEMORIA)
@@ -82,8 +118,10 @@ def visualizzaRicordi(request):
 def add(request):
 	return render(request, 'main/aggiungi/aggiungiRicordo.html')
 
-#verifica i dati aggiunti in aggiungiRicordo
 
+#
+#verifica i dati aggiunti in aggiungiRicordo
+#
 
 def verificaAdd(request):
 	dove = request.POST.get('luogo')

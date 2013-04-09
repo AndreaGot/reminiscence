@@ -8,21 +8,15 @@ PRIORITA' ALTA
 
 -  salvare i dati nel database (aggiungi Ricordo)
 
--  trovare un modo per far leggere i tag Django {% url xxx %} anche all'interno di script javascript
-
-
-
 PRIORITA' MEDIA
 
--  Organizzare in cartelle la cartella static e templates (preferibilmente una parola sola, univoca)
-   -   DOPO LE MODIFICHE IN STATIC: Correggere le occorrenze mancanti nei vari template (modifica il path del file)
+
 
 -  Ottimizzare la pagina di inserimento (bloccare la creazione di record vuoti se per esempio si sbaglia citt� o altro)
 
 -  Cercare un modo per evitare la creazione di Pagina.html e PaginaErr.html
 
 -  Modificare homepage (pensavo a una pagina introduttiva stile twitter)
-
 
 
 
