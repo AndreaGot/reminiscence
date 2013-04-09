@@ -7,9 +7,7 @@ from reminiscence.main.models import Comune, Provincia, Regione, Anziano,Memoria
 # metodo di chiamata non efficiente qui sotto
 
 def index(request):
-	template = loader.get_template('main/index.html')
-	context = Context({})
-	return HttpResponse(template.render(context))
+	return render(request, 'main/index.html')
 	
 def pagina2(request):
 	template = loader.get_template('main/pagina2.html')
@@ -38,22 +36,27 @@ def login(request):
 
 #Verifica i dati inseriti nella pagina di login
 
-def verifica(request):
+def verifica(request, username):
 	name = request.POST.get('firstname')
 	passw = request.POST.get('password')
 	tasto_premuto = request.POST.get('submit')
 
 	if tasto_premuto == 'Crea Account':
-		return iscrizione(request)
+		return account(request)
+	print("aaaa",passw,"aaaa")
+	
+	
 	
 	b = get_or_none(Anziano,nome=name)
 	
 	if b is None:
+		print "b non esiste"
 		return render(request, 'main/login/login.html')
 	
 	if passw == b.password:
 		risp = 'SI'
 	else:
+		print "errore password"
 		return render(request, 'main/login/login.html')
 	    
 	context = {'name':name, 'pass': str(b.password), 'risp':risp}
@@ -119,7 +122,7 @@ def verificaAdd(request):
 
 
 
-# Se la seconda parte e corretta, chiama una pagina di confer1111ma
+# Se la seconda parte e corretta, chiama una pagina di conferma
 
 def verificaAdd2(request):
 

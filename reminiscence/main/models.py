@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 # Create your models here.
 
@@ -76,4 +77,9 @@ class Media (models.Model):
 	titolo = models.CharField(max_length=203)
 	descrizione = models.CharField(max_length=300)
 	link = models.CharField(max_length=200)
+	
+	
+
+
+
 	

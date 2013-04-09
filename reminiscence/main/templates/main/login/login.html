@@ -1,3 +1,6 @@
+{% load url from future %}
+ {% load staticfiles %}
+
 <html>
 
 <script>
@@ -22,22 +25,11 @@ var correctData=false;
 
 
 
-if(username== "mario" && password == "rossi")
+if(username.length>=3 && password.length>=3)
 {
 correctData=true;	
 }
 alert(correctData);
-
-
-//  //IMPLEMENT SOME PYTHON CODE HERE
- 
-//tiri su la username e la password, se sono uguali a dei valori che decidi te tipo "mariorossi" e "12345678" allora metti correctData a true senno a false.. .spero vada bene
-
-
-
-
-
-
 
 
 if(correctData){
@@ -45,8 +37,7 @@ if(correctData){
 title.innerHTML="Login in corso!";
 title.style.color="#00ff00";
 title.style.fontSize="30px";
-{% load url from future %};
-parent.location = {% url 'main:verifica' %};
+parent.location = "{% url 'main:verifica' %}"; 
 
 }else{
 
@@ -63,23 +54,17 @@ setTimeout(function(){removeClass(d[0],"error");title.innerHTML="Log In";title.s
 
 
 }
-function redirect() {
-
-	parent.location = "http://www.google.com/"
-	
-}
 
 
 </script>
 <head>
- {% load staticfiles %}
+
 <link href = "{% static 'css/login.css' %}" type="text/css" rel="stylesheet" />
 </head>
 
 <body class="bodyGround" >
-{% load url from future %} 
 <div  class="loginDiv"style="background-color:#00ff00;height:350px;width:350px;margin: auto;">
-<form  class="form-container" action="{% url 'main:verifica' %}" name="MyForm" method="POST">
+<form  class="form-container" name="MyForm" method="POST">
 {% csrf_token %} 
 <div class="form-title" id="title"><h2>Log in</h2></div>
 <div class="form-title">Name</div>
