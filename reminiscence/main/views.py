@@ -36,15 +36,13 @@ def login(request):
 
 #Verifica i dati inseriti nella pagina di login
 
-def verifica(request, username):
+def verifica(request):
 	name = request.POST.get('firstname')
 	passw = request.POST.get('password')
 	tasto_premuto = request.POST.get('submit')
-
+	
 	if tasto_premuto == 'Crea Account':
 		return account(request)
-	print("aaaa",passw,"aaaa")
-	
 	
 	
 	b = get_or_none(Anziano,nome=name)

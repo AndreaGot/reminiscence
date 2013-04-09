@@ -1,5 +1,5 @@
 {% load url from future %}
- {% load staticfiles %}
+{% load staticfiles %}
 
 <html>
 
@@ -15,8 +15,7 @@ function hasClass(ele,cls) {
 }
 
 
-function checkValues(event){
-event.preventDefault();
+function checkValues(){
 TheForm = document.MyForm;
 var username=TheForm.firstname.value;
 var password=TheForm.password.value;
@@ -29,7 +28,6 @@ if(username.length>=3 && password.length>=3)
 {
 correctData=true;	
 }
-alert(correctData);
 
 
 if(correctData){
@@ -37,7 +35,7 @@ if(correctData){
 title.innerHTML="Login in corso!";
 title.style.color="#00ff00";
 title.style.fontSize="30px";
-parent.location = "{% url 'main:verifica' %}"; 
+return true;
 
 }else{
 
@@ -46,8 +44,7 @@ title.style.color="#ff0000";
 title.style.fontSize="30px";
 var d=document.getElementsByName("password")
 d[0].className = d[0].className + " error";
-setTimeout(function(){removeClass(d[0],"error");title.innerHTML="Log In";title.style.color="#777";},1500);
-
+return false;
 
 }
 
@@ -64,7 +61,7 @@ setTimeout(function(){removeClass(d[0],"error");title.innerHTML="Log In";title.s
 
 <body class="bodyGround" >
 <div  class="loginDiv"style="background-color:#00ff00;height:350px;width:350px;margin: auto;">
-<form  class="form-container" name="MyForm" method="POST">
+<form  class="form-container" name="MyForm" method="POST" onSubmit="return checkValues()" action = "{% url 'main:verifica' %}">
 {% csrf_token %} 
 <div class="form-title" id="title"><h2>Log in</h2></div>
 <div class="form-title">Name</div>
@@ -72,7 +69,7 @@ setTimeout(function(){removeClass(d[0],"error");title.innerHTML="Log In";title.s
 <div class="form-title">Password</div>
 <input class="form-field" type="password" name="password" /><br />
 <div>
-<input class="submit-button" type="submit" name="submit" value="Submit" onclick="checkValues(event)" style="width:40%;"/>
+<input class="submit-button" type="submit" name="submit" value="Submit" style="width:40%;"/>
 <span style="width:5%">or</span>
 
 <input class="create-account"  type="submit" name="submit" value="Crea Account" style="width:50%;"/>
