@@ -91,11 +91,21 @@ def conferma(request):
 	
 	c = get_or_none(Comune,comune='Trento')
 
-	a = Anziano(user, anno, mese, giorno, email, password)
-	
+	a = Anziano()
+	a.nome = user
+	a.anno_nascita = anno
+	a.mese_nascita = mese
+	a.giorno_nascita = giorno
+	a.luogo_nascita = c
+	a.email = email
+	a.password = pass1
 	a.save()
-
+	print "salvato"*123
 	return render(request, 'main/account/confermaAccount.html')
+	
+	
+	
+
 
 
 
@@ -183,12 +193,7 @@ def verificaAdd2(request):
 	
 	return render(request,'main/aggiungi/confermaInsert.html')
 
-#
-# GESTIONE TIMELINE
-#
 
-def timeline (request):
-	return render (request, 'main/timeline/timeline.html')
 
 
 #
