@@ -63,7 +63,7 @@ def verifica(request):
 		return render(request, 'main/login/login.html')
 	    
 	context = {'name':name, 'pass': str(b.password), 'risp':risp}
-	return render(request, 'main/login/verifica.html', context)
+	return render(request, 'main/timeline/timeline.html', context)
 
 #
 # PAGINA DI ISCRIZIONE
