@@ -72,7 +72,9 @@ return false;
 <div>
 <input class="submit-button" type="submit" name="submit" value="Submit" style="width:40%;"/>
 <span style="width:5%">or</span>
-
+</form>
+<form  class="form-container" name="MyForm" method="POST"action = "{% url 'main:account' %}">
+{% csrf_token %}
 <input class="create-account"  type="submit" name="submit" value="Crea Account" style="width:50%;"/>
 
 </div>
