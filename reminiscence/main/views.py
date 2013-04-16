@@ -183,7 +183,12 @@ def verificaAdd2(request):
 	
 	return render(request,'main/aggiungi/confermaInsert.html')
 
+#
+# GESTIONE TIMELINE
+#
 
+def timeline (request):
+	return render (request, 'main/timeline/timeline.html')
 
 
 #

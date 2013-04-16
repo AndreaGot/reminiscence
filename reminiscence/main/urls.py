@@ -30,4 +30,7 @@ urlpatterns = patterns('',
 #
     url(r'^home/', views.visualizzaRicordi, name='homepage'),
     
+# URL DI TIMELINE
+
+    url(r'^timeline/', views.timeline, name='timeline'),
 )
