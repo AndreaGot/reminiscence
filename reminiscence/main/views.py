@@ -137,59 +137,30 @@ def verificaAdd(request):
 	dove = request.POST.get('luogo')
 	quando_decade = request.POST.get('quando-decade')
 	quando_mese = request.POST.get('quando-mese')
+	quando_giorno = request.POST.get('quando-giorno')
 	anno = request.POST.get('anno')
+	dove = request.POST.get('luogo')
 	con = request.POST.get('conchi')
-	esiste_citta= get_or_none(Comune,comune=dove)
-
-	if esiste_citta is None:
-		context = {'dove':dove}
-		return render(request,'main/aggiungi/datierrati.html', context)
-	elif esiste_citta is not None and anno != "":
-		
-		#preleva ID Anziano (da modificare, deve prendere l'id dell'anziano loggato)	
-		a=Anziano.objects.get(nome='Andrea')
-		
-		#crea un nuovo record in Memoria inizializzandolo solo con IDAnziano, il resto verra aggiunto dopo (necessario per creare si_svolge_memoria)
-		m=Memoria(IDAnziano=a)
-		m.save()
-		
-		#associa a d il record Decade corrispondente al valore della form select
-		d=Decade.objects.get(decade=quando_decade)
-		
-		#crea si_svolge_memoria con tutti i campi inseriti
-		s=si_svolge_memoria(IDDecade=d,IDMemoria=m,conchi=con,luogo=dove,anno=anno,mese=quando_mese)
-		s.save()
-		
-		#passa il valore di m.pk alla pagina successiva (necessario per trovare id memoria senza fare giri strani)
-		context={'memoria':m.pk}
-		return render(request, 'main/aggiungi/aggiungiRicordo2.html', context)
-	else:
-		return render(request, 'main/aggiungi/aggiungiRicordoErr.html')
-
-
-
-# Se la seconda parte e corretta, chiama una pagina di conferma
-
-def verificaAdd2(request):
-
-	#SE I DATI NON SONO CORRETTI CHIAMA IL TEMPLATE aggiungiRicordo2Err (gia creato in main/aggiungi/aggiungiRicordo2Err)
-
 	titolo= request.POST.get('titolo')
 	descrizione = request.POST.get('descrizione')
 	
-	#input nascosta, all'interno c'e il valore del pk Memoria salvato nella pagina prima
-	a = int(request.POST.get('a'))
-
-	if titolo == "" or descrizione == "":
-		return render(request, 'main/aggiungi/aggiungiRicordo2Err.html')
-   
-   
-    #prende il valore contenuto nell'input nascosta (a) e lo usa per raggiungere il record memoria creato in precedenza. A questo punto salva le informazioni ricevute.
-	mem = Memoria.objects.get(pk = a)
-	mem.titolo = titolo
-	mem.descrizione = descrizione
-	mem.save()
-	
+	print dove, quando_decade, quando_mese, quando_giorno, anno, dove, titolo, descrizione
+		
+		#preleva ID Anziano (da modificare, deve prendere l'id dell'anziano loggato)	
+	a=Anziano.objects.get(nome='Andrea')
+		
+		#crea un nuovo record in Memoria inizializzandolo solo con IDAnziano, il resto verra aggiunto dopo (necessario per creare si_svolge_memoria)
+	m=Memoria(IDAnziano=a)
+	m.titolo = titolo
+	m.descrizione = descrizione
+	m.save()
+		
+		#associa a d il record Decade corrispondente al valore della form select
+	d=Decade.objects.get(decade=quando_decade)
+		
+		#crea si_svolge_memoria con tutti i campi inseriti
+	s=si_svolge_memoria(IDDecade=d,IDMemoria=m,luogo=dove,anno=anno,mese=quando_mese, giorno = quando_giorno)
+	s.save()
 	
 	return render(request,'main/aggiungi/confermaInsert.html')
 

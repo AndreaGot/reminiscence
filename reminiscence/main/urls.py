@@ -15,9 +15,7 @@ urlpatterns = patterns('',
 #
 # URL DI INSERIMENTO RICORDO
 #
-    url(r'^add/', views.add, name='add'),
-    url(r'^add2/', views.verificaAdd, name='add2'),
-    url(r'^add3/', views.verificaAdd2, name='add3'),
+    url(r'^add/', views.verificaAdd, name='add'),
     
 #
 # URL DI ISCRIZIONE AL SERVIZIO
