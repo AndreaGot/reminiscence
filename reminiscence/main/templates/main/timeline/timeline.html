@@ -28,7 +28,7 @@
            
             	<a href="#settings" data-role="button" data-icon="gear" data-iconpos="right">Impostazioni</a>
  				<p class="header">Ricordi</p>
- 				<a href="#addPage" data-role="button" data-icon="plus"  data-iconpos="right">Aggiungi ricordo</a>
+ 				<a href="#addRecordPage" data-role="button" data-icon="plus"  data-iconpos="right">Aggiungi ricordo</a>
 
             </div>
             <div data-role="content" data-theme="a">            
@@ -56,10 +56,10 @@
    
   
       
-        	
-        	<div data-role="page" id="addRecordPage">
-        		<form name="AggiuntaRicordo" action = "{% url 'main:add' %}" method = "POST">
+        	<form name="AggiuntaRicordo" action = "{% url 'main:add' %}" method = "POST">
         			{% csrf_token %}
+        	<div data-role="page" id="addRecordPage">
+        		
 						<fieldset>
             				<div data-role="header">
             					<a  style="width:25%;margin-left:5%;top:5%;"  href="#Timeline" data-role="button" data-transition="slide">Indietro</a> 
@@ -68,11 +68,11 @@
             				</div>
             				<div data-role="content" data-theme="a">
             
-           			    		<h2 >Titolo</h2>
+           			    		<h2>Titolo</h2>
               					<div data-role="fieldcontain" style="width:65%;margin-left:auto;margin-right:auto"  class="ui-hide-label">
-                    				<input  id="titleSource" type="text" name="titolo"  value="" placeholder="Dai un titolo a questo ricordo..." />
+                    				<input id="titleSource" type="text" name="titolo"  value="" placeholder="Dai un titolo a questo ricordo..." />
                     			</div>
-               					<h2 >Inserisci la data precisa.....</h2>
+               					<h2>Inserisci la data precisa.....</h2>
   								<div  data-role="controlgroup" data-type="horizontal"> 
     								<label for="select-choice-day1">Day</label>
                         			<select name="quando-giorno" id="select-choice-day1">
@@ -321,10 +321,10 @@
                   				</div>
                   			</div>
                    </fieldset>
-                   </form> 
+                   
 				</div>
 
- 
+  </form>
 
 
 
