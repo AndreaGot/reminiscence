@@ -56,10 +56,10 @@
    
   
       
-        	<form name="AggiuntaRicordo" action = "{% url 'main:add' %}" method = "POST">
-        			{% csrf_token %}
+        	
         	<div data-role="page" id="addRecordPage">
-        		
+        		<form name="AggiuntaRicordo" onsubmit = "invia()" method = "POST">
+        			{% csrf_token %}
 						<fieldset>
             				<div data-role="header">
             					<a  style="width:25%;margin-left:5%;top:5%;"  href="#Timeline" data-role="button" data-transition="slide">Indietro</a> 
@@ -241,12 +241,16 @@
 							<div data-role="footer">
            						<a  style="width:45%;margin-left:50%;top:35%;" id="goon" href="#place-photoPage" data-role="button" data-transition="slide">Avanti</a>
             				</div>
-        				
-        
+        				</fieldset>
+        		</form>
         </div>
         
         
         					<div data-role="page" id="place-photoPage">
+        					<form name="AggiuntaRicordo" action = "{% url 'main:add' %}" method = "POST">
+        						{% csrf_token %}
+									<fieldset>
+
             					<div data-role="header">
             						<a  style="width:25%;margin-left:5%;top:5%;"  href="#addRecordPage" data-role="button" data-transition="slide">Indietro</a> 
      								<p class="header">Località e foto</p>
@@ -321,7 +325,7 @@
                   				</div>
                   			</div>
                    </fieldset>
-                   
+        		</form>
 				</div>
 
   </form>
