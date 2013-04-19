@@ -34,7 +34,7 @@ def luoghi(request):
 
 
 def login(request):
-	return render(request, 'main/login/login.html')
+	return render(request, 'main/nuovologin/login.html')
 
 
 #
@@ -55,12 +55,12 @@ def verifica(request):
 	
 	if b is None:
 		
-		return render(request, 'main/login/login.html')
+		return render(request, 'main/nuovologin/login.html')
 	
 	if passw == b.password:
 		risp = 'SI'
 	else:
-		return render(request, 'main/login/login.html')
+		return render(request, 'main/nuovologin/login.html')
 	    
 	context = {'name':name, 'pass': str(b.password), 'risp':risp}
 	return render(request, 'main/timeline/timeline.html', context)
