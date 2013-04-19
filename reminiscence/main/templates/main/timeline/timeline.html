@@ -14,7 +14,23 @@
 		
 		<link href="{% static 'css/timeline/timelinestyle.css' %}" rel="stylesheet" type="text/css" />
         <script src="{% static 'js/timeline/timelinescript.js' %}" type="text/javascript"></script>
+        <script> 
         
+        	var invia = function() {
+        	
+        	$(document).ready(function() {
+    			$("#subbut").click(function() {
+        			$.post($("#firstform").attr("{% url 'main:add' %}"), $("#add1").serialize()+$("#add2").serialize(),
+              			function() {
+                			alert('Both forms submitted');
+              				});
+      					});
+  				});
+        		
+        	}
+        
+        
+        </script>
         	<div data-role="page" id="Timeline">
      			<div id="settings" data-role="panel"  data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
     			<a href="" data-role="button" data-theme="a">Sicurezza</a>
@@ -58,7 +74,7 @@
       
         	
         	<div data-role="page" id="addRecordPage">
-        		<form name="AggiuntaRicordo" onsubmit = "invia()" method = "POST">
+        		<form name="add1" method = "POST">
         			{% csrf_token %}
 						<fieldset>
             				<div data-role="header">
@@ -70,7 +86,7 @@
             
            			    		<h2>Titolo</h2>
               					<div data-role="fieldcontain" style="width:65%;margin-left:auto;margin-right:auto"  class="ui-hide-label">
-                    				<input id="titleSource" type="text" name="titolo"  value="" placeholder="Dai un titolo a questo ricordo..." />
+                    				<input id="titolo" type="text" name="titolo"  value="" placeholder="Dai un titolo a questo ricordo..." />
                     			</div>
                					<h2>Inserisci la data precisa.....</h2>
   								<div  data-role="controlgroup" data-type="horizontal"> 
@@ -132,7 +148,7 @@
         
         
         					<div data-role="page" id="place-photoPage">
-        					<form name="AggiuntaRicordo" action = "{% url 'main:add' %}" method = "POST">
+        					<form name="add2" onclick=invia() method = "POST">
         						{% csrf_token %}
 									<fieldset>
 
@@ -206,7 +222,7 @@
          
         
                 				<div data-role="footer" >
-                 	 				<input  style="width:45%;margin-left:50%;top:35%;" type="submit" rel="external" value="Fine">
+                 	 				<input  style="width:45%;margin-left:50%;top:35%;" type="submit" id="subbut" rel="external" value="Fine">
                   				</div>
                   			</div>
                    </fieldset>
