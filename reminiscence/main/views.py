@@ -34,7 +34,7 @@ def luoghi(request):
 
 
 def login(request):
-	return render(request, 'main/login/login.html')
+	return render(request, 'main/nuovologin/login.html')
 
 
 #
