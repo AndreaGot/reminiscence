@@ -70,7 +70,10 @@ def verifica(request):
 #
 
 def account(request):
-	return render(request, 'main/account/creazioneAccount.html')
+	giri = [i for i in range(1900, 2013)]
+	giornimese = [i for i in range(1, 32)]
+	context = {'giri':giri, 'giornimese':giornimese}
+	return render(request, 'main/account/creazioneAccount.html', context)
 
 
 
