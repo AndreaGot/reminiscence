@@ -68,7 +68,12 @@ def verifica(request):
 def account(request):
 	giri = [i for i in range(1900, 2013)]
 	giornimese = [i for i in range(1, 32)]
-	context = {'giri':giri, 'giornimese':giornimese}
+	trento = Provincia.objects.get(pk=22)
+	bolzano = Provincia.objects.get(pk=21)
+	comtn = Comune.objects.filter(provincia=trento)
+	combz = Comune.objects.filter(provincia=bolzano)
+	
+	context = {'giri':giri, 'giornimese':giornimese,'ctn':comtn, 'cbz':combz}
 	return render(request, 'main/account/creazioneAccount.html', context)
 
 
