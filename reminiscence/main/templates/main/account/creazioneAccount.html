@@ -16,12 +16,51 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/aggiungi/creazionestyle.css' %}">
         <script>
         	var rimanda = function() {parent.location="{% url 'main:login' %}";};
-        	var controlla = function() {return true;};
-
+        	var controlla = function() {
+        		
+        		var issues=false;
+				var username=document.getElementById('user').value;
+				var password=document.getElementById('pass').value;
+				var password2=document.getElementById('pass2').value
+				
+				console.log(username);
+				console.log(password);
+				console.log(password2);
+				
+				
+				if(username==="")
+				{
+				alert("il nome utente non è stato inserito. Per favore, inseriscilo");
+				issues = true;
+				}
+			
+        		
+        		if(password==="" || password2==="")
+        		{
+				alert("la password non è stata inserita. Per favore, inseriscila");
+				issues = true;
+				}
+			
+				if(password!=password2)
+        		{
+				alert("le password non corrispondono. Per favore, correggile");
+				issues = true;
+				}
+				
+				if(issues===false)
+				{
+					$("#DatiPersonali").submit();
+				}
+				
+        	};
+			
+			
+			
+			
         </script>
     </head>
     <body>
-    <form name="DatiPersonali" action="{% url 'main:conferma' %}" method="POST">
+    <form name="DatiPersonali" id="DatiPersonali" action="{% url 'main:conferma' %}" method="POST">
     {% csrf_token %}
     
 	<div data-role="page" id="NamePage">
@@ -38,7 +77,7 @@
                  <h2 >Nome</h2>
 
                 <div data-role="fieldcontain"  class="ui-hide-label" style="width:75%;margin-left:auto;margin-right:auto" >
-                    <input type="text"  name="username" id="username" value="" placeholder="Come ti chiami?" />
+                    <input type="text"  name="username" id="user" value="" placeholder="Come ti chiami?" />
 
 
 
@@ -352,7 +391,7 @@
                     <div >
                          <h2 >Inserire Parola Chiave</h2>
 
-                        <input type="password" name="password" id="passwordInsert" value="" />
+                        <input type="password" name="password" id="pass" value="" />
                     </div>
 
 <!--------------------------------------qui il sesto input Password - 1 ------------------------------------------------------->
@@ -360,7 +399,7 @@
                     <div >
                          <h2 >Reinserire Parola Chiave</h2>
 
-                        <input type="password" name="password2" id="passwordReInsert" value="" />
+                        <input type="password" name="password2" id="pass2" value="" />
                     </div>
 
 <!--------------------------------------qui il settimo input Password - 2 ------------------------------------------------------->
@@ -375,7 +414,7 @@
             </div>
 
             <div data-role="footer">
-            <input  style="width:45%;margin-left:50%;top:35%;" type="submit" value="Fine">
+            <input  style="width:45%;margin-left:50%;top:35%;" type="button" onclick="controlla()" value="Fine">
             </div>
         </div>
         
