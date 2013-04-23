@@ -8,31 +8,12 @@
         {% load staticfiles %}
 
 	    <link href="{% static 'css/stili/verde.css' %}" rel="stylesheet" type="text/css" />
-	    <link href="{% static 'css/stili/b.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'css/jquery.mobile.structure-1.3.0.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'css/jquery.mobile.theme-1.3.min.css' %}" rel="stylesheet" type="text/css" />
         <script src="{% static 'js/jquery-1.9.1.min.js' %}" type="text/javascript"></script>
         <script src="{% static 'js/jquery.mobile-1.3.0.min.js' %}" type="text/javascript"></script>
-		
 		<link href="{% static 'css/timeline/timelinestyle.css' %}" rel="stylesheet" type="text/css" />
         <script src="{% static 'js/timeline/timelinescript.js' %}" type="text/javascript"></script>
-        <script> 
-            var dati = 
-        	var invia = function() {
-        	
-        	$(document).ready(function() {
-    			$("#subbut").click(function() {
-        			$.post($("#firstform").attr("{% url 'main:add' %}"), $("#add1").serialize()+$("#add2").serialize(),
-              			function() {
-                			alert('Both forms submitted');
-              				});
-      					});
-  				});
-        		
-        	}
-        
-        
-        </script>
+   
         	<div data-role="page" id="Timeline">
      			<div id="settings" data-role="panel"  data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
     			<a href="" data-role="button" data-theme="a">Sicurezza</a>

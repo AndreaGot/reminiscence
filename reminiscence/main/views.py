@@ -45,11 +45,7 @@ def login(request):
 def verifica(request):
 	name = request.POST.get('firstname')
 	passw = request.POST.get('password')
-	tasto_premuto = request.POST.get('submit')
-	
-	if tasto_premuto == 'Crea Account':
-		return account(request)
-	
+
 	
 	b = get_or_none(Anziano,nome=name)
 	
@@ -103,7 +99,6 @@ def conferma(request):
 	a.email = email
 	a.password = pass1
 	a.save()
-	print "salvato"*123
 	return render(request, 'main/account/confermaAccount.html')
 	
 	

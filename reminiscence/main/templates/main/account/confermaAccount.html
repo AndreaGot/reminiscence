@@ -1,8 +1,17 @@
+{% load staticfiles %}
+<!DOCTYPE html>
 <html>
+
 <body>
 
 <h1> ACCOUNT CREATO! </h1>
 
-
+Verrai rimandato alla pagina di login tra 5 secondi
+<script>
+ $(document).ready(function () {
+		setTimeout(function() {
+      		parent.location="{% url 'main:login' %}";
+		}, 5000);        });
+</script>
 </body>
 </html>
