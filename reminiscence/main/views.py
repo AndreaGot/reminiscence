@@ -85,7 +85,8 @@ def account(request):
 def conferma(request):
 
 	user = request.POST.get('username')
-	# com = request.POST.get(('Comlist').val)
+	com = request.POST.get('paese')
+	print com
 	giorno = request.POST.get('select_choice_day')
 	mese = request.POST.get('select_choice_month')
 	anno = request.POST.get('select_choice_year')
