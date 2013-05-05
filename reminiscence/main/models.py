@@ -78,6 +78,32 @@ class Media (models.Model):
 	descrizione = models.CharField(max_length=300)
 	link = models.CharField(max_length=200)
 	
+class Evento (models.Model):
+	titolo = models.CharField(max_length=203)
+	descrizione = models.CharField(max_length=300)
+	IDDecade= models.ForeignKey(Decade)
+	anno= models.CharField(max_length = 4)
+	def __unicode__(self):
+		return str(self.titolo)
+
+class Foto (models.Model):
+	titolo = models.CharField(max_length=200)
+	link = models.CharField(max_length=200)
+	def __unicode__(self):
+		return str(self.titolo)
+	
+class Song (models.Model):
+	titolo = models.CharField(max_length=203)
+	descrizione = models.CharField(max_length=300)
+	IDDecade= models.ForeignKey(Decade)
+	link = models.CharField(max_length=200)
+	anno= models.CharField(max_length = 4)
+	def __unicode__(self):
+		return str(self.titolo)
+
+
+
+	
 	
 
 
