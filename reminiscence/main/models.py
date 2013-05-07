@@ -60,6 +60,7 @@ class si_svolge_memoria(models.Model):
     IDMemoria=models.ForeignKey(Memoria)
     conchi = models.CharField(max_length=200)
     luogo = models.CharField(max_length=50)
+    indice = models.FloatField(max_length=20)
     anno= models.CharField(max_length = 4)
     mese= models.CharField(max_length = 2)
     giorno= models.CharField(max_length = 2)
@@ -101,9 +102,6 @@ class Song (models.Model):
 	def __unicode__(self):
 		return str(self.titolo)
 
-
-
-	
 	
 
 
