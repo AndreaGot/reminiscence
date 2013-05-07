@@ -1,3 +1,8 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     
@@ -131,10 +136,13 @@
         
         
         					<div data-role="page" id="place-photoPage">
-        					<form name="add2" onclick=invia() method = "POST">
-        						{% csrf_token %}
+        					<form name="add2"method = "POST">
+        					
+                                                    
+                                                    {% csrf_token %}
 									<fieldset>
-
+                                                                      
+                                                    
             					<div data-role="header">
             						<a  style="width:25%;margin-left:5%;top:5%;"  href="#addRecordPage" data-role="button" data-transition="slide">Indietro</a> 
      								<p class="header">Località e foto</p>
@@ -187,10 +195,16 @@
         						<div data-role="footer">
 									<a  style="width:45%;margin-left:50%;top:35%;"  href="#writeRecordPage" data-role="button" data-transition="slide">Avanti</a>
         						</div>
+                                                                            
+                                                                        </fieldset>
+                                                        </form>
+
 							</div>
         
           
      						<div data-role="page" id="writeRecordPage">
+                                                    <form name="add3" method = "POST">
+                                                        <fieldset>
             					<div data-role="header" >
       								<a  style="width:25%;margin-left:5%;top:5%;"  href="#place-photoPage" data-role="button" data-transition="slide">Indietro</a> 
  									<p class="header" id="targetTitle"></p>
@@ -207,14 +221,10 @@
                 				<div data-role="footer" >
                  	 				<input  style="width:45%;margin-left:50%;top:35%;" type="submit" id="subbut" rel="external" value="Fine">
                   				</div>
+                                                        </fieldset>
+                                                       </form>
                   			</div>
-                   </fieldset>
-        		</form>
-				</div>
-
-  </form>
-
-
+                      
 
   
      
