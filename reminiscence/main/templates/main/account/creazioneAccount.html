@@ -16,6 +16,19 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/aggiungi/creazionestyle.css' %}">
         <script>
         	var rimanda = function() {parent.location="{% url 'main:login' %}";};
+
+		var utente=function(){
+		this.nome="";
+		this.cognome="";
+		this.anno_nascita="";
+		this.mese_nascita="";
+		this.giorno_nascita="";
+		this.luogo_nascita="";
+		this.email="";
+		this.password="";
+
+		}
+		var u=new utente();
         	var controlla = function() {
         		
         		var issues=false;
@@ -91,7 +104,7 @@
                 <div data-demo-html="true" style="width:75%;margin-left:auto;margin-right:auto" >
                     <ul data-role="listview" name="paese" data-filter="true" id="ComList" data-filter-reveal="true" data-filter-placeholder="Dove sei vissuto piu a lungo?">
                          {% for i in ctn %}
-        				  <li>{{i}}</li>
+        				  <li >{{i}}</li>
 						  {%endfor%}
 						{% for i in cbz %}
         				  <li>{{i}}</li>
@@ -100,11 +113,23 @@
                 </div>
             </div>
             <div data-role="footer">
-        <a  style="width:45%;margin-left:50%;top:35%;"  href="#BirthPage" data-role="button" data-transition="slide">Avanti</a>
+        <a  style="width:45%;margin-left:50%;top:35%;" onclick="nomeluogo()" href="#BirthPage" data-role="button" data-transition="slide">Avanti</a>
     
             </div>
         </div>
-        
+        <script>
+$(document).ready(function(){
+$('#ComList').children('li').on('click', function () {
+  u.luogo_nascita=this.innerHTML
+});
+});
+
+
+function nomeluogo(){
+u.nome=$("#user").val();
+
+}
+	</script>
         
         <div data-role="page" id="BirthPage" style="width:100%;height:100%">
             <div data-role="header">
@@ -162,12 +187,18 @@
                
             </div>
             <div data-role="footer">
-             <a  style="width:45%;margin-left:50%;top:35%;"  href="#PasswordPage" data-role="button" data-transition="slide">Avanti</a>
+             <a  style="width:45%;margin-left:50%;top:35%;" onclick="data()"  href="#PasswordPage" data-role="button" data-transition="slide">Avanti</a>
             
             </div>
         </div>
-        
-        
+<script>
+        function data(){
+u.mese_nascita=$("#select_choice_day").val();
+u.giorno_nascita=$("#select_choice_month").val();
+u.anno_nascita=$("#select_choice_year").val();
+
+}
+ </script>  
         <div data-role="page" id="PasswordPage">
             <div data-role="header">
             <a  style="width:25%;margin-left:5%;top:5%;"  href="#BirthPage" data-role="button" data-transition="slide">Indietro</a> 
@@ -202,10 +233,29 @@
             </div>
 
             <div data-role="footer">
-            <input  style="width:45%;margin-left:50%;top:35%;" type="button" onclick="controlla()" value="Fine">
+            <input  style="width:45%;margin-left:50%;top:35%;" type="button" onclick="final()" value="Fine">
             </div>
         </div>
-        
+        <script>
+        function final(){
+u.email=$("#email").val();
+u.password=$("#pass").val();
+
+u.anno_nascita=$("#select_choice_year").val();
+//alert(u.nome+" "+u.cognome+" "+u.anno_nascita+" "+u.mese_nascita+" "+u.giorno_nascita+" "+u.luogo_nascita+" "+u.email+" "+u.password);
+
+$.ajax({
+  url: "account",
+  data: JSON.stringify(u),
+  processData: false,
+  dataType: "json",
+  success:function(a) { },
+  error:function() {}
+});
+
+//$.mobile.changePage( {% static 'account/confermaAccount.html' %}, { transition: "slideup"} );
+}
+ </script>  
 	</form>
 	</body>
 </html>

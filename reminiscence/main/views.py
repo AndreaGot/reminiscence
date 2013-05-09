@@ -81,7 +81,7 @@ def account(request):
 #
 # Conferma e verifica dati
 #
-
+"""
 def conferma(request):
 
 	user = request.POST.get('username')
@@ -106,8 +106,30 @@ def conferma(request):
 	a.password = pass1
 	a.save()
 	return render(request, 'main/account/confermaAccount.html')
+
+"""
 	
+#
+#prova di implementazione salvataggio di un nuovo utente nel db tramite json
+#
+#@ajax(require='POST')
+def conferma(request):#se vogliamo provarla davvero e usarla al posto di conferma(request) basta rinominare le due funz
+
+	import pdb; pdb.set_trace()
+	json_data=simplejson.loads(request.data)
+	#json_data=request.POST.get('json')
 	
+	a=Anziano()
+	a.nome = json_data.user
+	print("porcodue "+json_data.nome);
+	a.anno_nascita = json_data.anno
+	a.mese_nascita = json_data.mese
+	a.giorno_nascita = json_data.giorno
+	a.luogo_nascita = json_data.luogo
+	a.email = json_data.email
+	a.password = json_data.password
+	a.save()
+	return render(request, 'main/account/confermaAccount.html')
 	
 
 
