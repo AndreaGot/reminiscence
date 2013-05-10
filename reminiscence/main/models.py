@@ -86,6 +86,8 @@ class Hint (models.Model):
 	link = models.CharField(max_length=200)
 	IDDecade= models.ForeignKey(Decade)
 	anno= models.CharField(max_length = 4)
+	tipo = models.CharField(max_length = 15)
+	indice = models.FloatField(max_length = 25)
 	def __unicode__(self):
 		return str(self.titolo)
 
