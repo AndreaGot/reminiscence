@@ -81,7 +81,6 @@ def account(request):
 #
 # Conferma e verifica dati
 #
-"""
 def conferma(request):
 
 	user = request.POST.get('username')
@@ -107,13 +106,12 @@ def conferma(request):
 	a.save()
 	return render(request, 'main/account/confermaAccount.html')
 
-"""
 	
 #
 #prova di implementazione salvataggio di un nuovo utente nel db tramite json
 #
 #@ajax(require='POST')
-def conferma(request):#se vogliamo provarla davvero e usarla al posto di conferma(request) basta rinominare le due funz
+def conferma2(request):#se vogliamo provarla davvero e usarla al posto di conferma(request) basta rinominare le due funz
 
 	import pdb; pdb.set_trace()
 	json_data=simplejson.loads(request.data)
