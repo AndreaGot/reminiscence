@@ -17,8 +17,21 @@
         <script>
         	var rimanda = function() {parent.location="{% url 'main:login' %}";};
 
-
 		
+	var utente=function(){
+    this.nome="";
+    this.cognome="";
+    this.anno_nascita="";
+    this.mese_nascita="";
+    this.giorno_nascita="";
+    this.luogo_nascita="";
+    this.email="";
+    this.password="";
+
+    };
+   
+   var u=new utente();
+				
         	var controlla = function() {
         		
         		var issues=false;
@@ -35,35 +48,55 @@
 				{
 				alert("il nome utente non è stato inserito. Per favore, inseriscilo");
 				issues = true;
-				};
+				}
 			
         		
         		if(password==="" || password2==="")
         		{
 				alert("la password non è stata inserita. Per favore, inseriscila");
 				issues = true;
-				};
+				}
 			
 				if(password!=password2)
         		{
 				alert("le password non corrispondono. Per favore, correggile");
 				issues = true;
-				};
+				}
 				
 				if(issues===false)
 				{
-					return true;
-				};
+					alert("entro in final");
+					final();
+				}
 				
-        	
+        	};
 			
-			
+			    function final(){
+			    
+					u.email=$("#email").val();
+					u.password=$("#pass").val();
+
+					u.anno_nascita=$("#select_choice_year").val();
+					alert(u.nome+" "+u.cognome+" "+u.anno_nascita+" "+u.mese_nascita+" "+u.giorno_nascita+" "+u.luogo_nascita+" "+u.email+" "+u.password);
+	
+					$.ajax({
+					  url: "account",
+					  data: JSON.stringify(u),
+					  processData: false,
+					  dataType: "json",
+					  success:function(a) { },	
+					  error:function() {}
+							});
+						
+					return true;
+						};
 			
 			
         </script>
+        
     </head>
     <body>
-    <form name="DatiPersonali" id="DatiPersonali" onSubmit="controlla()" action="{% url 'main:conferma' %}" method="POST">
+    <form name="DatiPersonali" id="DatiPersonali" onsubmit="return controlla()" action="{% url 'main:conferma' %}" method="POST">
     {% csrf_token %}
     
 	<div data-role="page" id="NamePage">
@@ -226,26 +259,9 @@ u.anno_nascita=$("#select_choice_year").val();
             <input  style="width:45%;margin-left:50%;top:35%;" type="submit" value="Fine">
             </div>
         </div>
-      <!--  <script>
-        function final(){
-u.email=$("#email").val();
-u.password=$("#pass").val();
+        <script>
 
-u.anno_nascita=$("#select_choice_year").val();
-//alert(u.nome+" "+u.cognome+" "+u.anno_nascita+" "+u.mese_nascita+" "+u.giorno_nascita+" "+u.luogo_nascita+" "+u.email+" "+u.password);
-
-$.ajax({
-  url: "account",
-  data: JSON.stringify(u),
-  processData: false,
-  dataType: "json",
-  success:function(a) { },
-  error:function() {}
-});
-
-//$.mobile.changePage( {% static 'account/confermaAccount.html' %}, { transition: "slideup"} );
-}
- </script>  -->
+ </script>  
 	</form>
 	</body>
 </html>

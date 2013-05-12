@@ -2,6 +2,7 @@
 from django.http import HttpResponse
 from django.template import Context, loader
 from django.shortcuts import render
+from django.utils import simplejson
 from reminiscence.main.models import Comune, Provincia, Regione, Anziano,Memoria,si_svolge_memoria,Decade
 
 # metodo di chiamata non efficiente qui sotto
@@ -110,12 +111,12 @@ def conferma(request):
 #
 #prova di implementazione salvataggio di un nuovo utente nel db tramite json
 #
-#@ajax(require='POST')
-def conferma2(request):#se vogliamo provarla davvero e usarla al posto di conferma(request) basta rinominare le due funz
 
+def conferma2(request):#se vogliamo provarla davvero e usarla al posto di conferma(request) basta rinominare le due funz
+	#@ajax(require='POST')
 	import pdb; pdb.set_trace()
 	json_data=simplejson.loads(request.data)
-	#json_data=request.POST.get('json')
+	json_data=request.POST.get('json')
 	
 	a=Anziano()
 	a.nome = json_data.user
