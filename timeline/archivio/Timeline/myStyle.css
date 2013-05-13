@@ -1,0 +1,101 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.rhombus{
+position:absolute;
+height:20px;
+width:20px;
+background:#300;
+-webkit-transform: rotate(45deg) skew(20deg, 20deg);
+top:23px;
+border:solid 10px;
+box-sizing:border-box;
+-moz-box-sizing:border-box;
+-webkit-box-sizing:border-box;
+}
+
+.icon {
+position:absolute;
+background-color:#FFF;
+border-color: #dc5235;
+color: #dc5235;
+border-width: 9px 3px;
+display: inline-block;
+text-align: center;
+border-style: solid;
+-webkit-border-radius: 100%;
+-moz-border-radius: 100%;
+border-radius: 100%;
+-webkit-transform: rotate(-45deg);
+-moz-transform: rotate(-45deg);
+-ms-transform: rotate(-45deg);
+-o-transform: rotate(-45deg);
+transform: rotate(-45deg);
+border-width: 6px 2px;
+padding: 24px 28px;
+z-index:2;
+}
+
+.icon span{
+position:absolute;
+margin:-20% -30% ;
+transform: rotate(45deg);
+-webkit-transform: rotate(+45deg);
+-moz-transform: rotate(+45deg);
+-ms-transform: rotate(+45deg);
+-o-transform: rotate(+45deg);
+transform: rotate(+45deg);
+z-index:2;
+font-weight: bold;
+}
+
+#myLine{
+position:absolute;
+left:2.5%;
+width:93%;
+height:0px;
+border:0px;
+border-top:15px solid;
+border-color:#dc5235;
+-webkit-transform: skewX(-40deg);
+-moz-transform: skewX(-40deg);
+-ms-transform: skewX(-40deg);
+-o-transform: skewX(-40deg);
+transform: skewX(-40deg);
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+z-index:0;
+}
+
+
+.polaroid{
+  	position: relative;
+    background: #fff;
+    width: 200px;
+    padding: 7px;
+    margin: 10px;
+    text-align: center; 
+    -moz-box-shadow: 1px 1px 3px #222;
+	z-index:1;
+    box-shadow: 1px 1px 3px #222;
+	
+}
+
+.photo {
+    position:relative;
+    height:80%;
+	width:100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+
+.backgroundVideo{
+	background:rgba(0,0,0,0.85);
+	z-index:6;
+	}

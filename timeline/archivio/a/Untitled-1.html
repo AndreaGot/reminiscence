@@ -1,0 +1,188 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Mobile Web App</title>
+<link href="jquery.mobile.theme-1.3.min.css" rel="stylesheet" type="text/css"/>
+<link href="jquery.mobile.structure-1.3.0.min.css" rel="stylesheet" type="text/css"/>
+
+<script src="jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="jquery.mobile-1.3.0.min.js" type="text/javascript"></script>
+</head> 
+<style>
+.abc{
+	position:absolute;
+	background-repeat:no-repeat;
+	background-position:center; 
+	height:0px;
+}
+
+.console{
+	border-bottom:80px solid blue;
+   border-left: 40px solid transparent;
+   border-right: 40px solid transparent;
+   z-index:10;
+  
+	}
+	
+	
+	.info{
+		
+		position:absolute;
+		width:60px;
+		visibility:hidden;
+		height:60px;
+		border-radius:60px;
+		z-index:15;
+		}
+</style>
+<script>
+
+var left,right;
+var leftAfter,rightAfter;
+var pinchStarted=false;
+$(document).on("touchmove", function (event) {
+
+    //only run code if the user has two fingers touching
+  /*  if (event.originalEvent.touches.length === 2) {
+
+        //track the touches, I'm setting each touch as an array inside the tracks array
+        //each touch array contains an X and Y coordinate
+		
+        tracks.push([ [event.originalEvent.touches[0].pageX, event.originalEvent.touches[0].pageY],
+		 [event.originalEvent.touches[1].pageX, event.originalEvent.touches[1].pageY] ]);
+    }*/
+}).on("touchstart", function (event) {
+    //start-over
+	  if (event.originalEvent.touches.length === 2){
+	left=event.originalEvent.touches[0].pageX;
+	right=event.originalEvent.touches[1].pageX;
+	pinchStarted=true;
+	}
+}).on("touchend", function (event) {
+    if (pinchStarted){
+		pinchStarted=false;
+		var newleft,newright;
+		newleft=event.originalEvent.touches[0].pageX;
+		newright=event.originalEvent.touches[1].pageX;
+		var contained=(newleft>left&&newright>left&&newright<right&&newleft<right)||(newleft<left&&newright>left&&newright>right&&newleft>right);
+		var notContained=(newleft<left&&newright>right)||(newright<left&&newlft>right);
+		if(contained){alert("zoomIn");}else if(notContained){
+			alert("zoomOut");
+			}
+		}
+});
+
+
+
+
+function isTouchDevice() {
+   var el = document.createElement('div');
+   el.setAttribute('ongesturestart', 'return;');
+   return typeof el.ongesturestart === "function";
+}
+var prevPos;
+	var divHeight;
+
+function toggleDown(){
+	if($('#my-collaspible').css("top").replace("px","")==-210){
+		$('#my-collaspible').animate({
+       top: '-10px'});
+		}else{
+		$('#my-collaspible').animate({
+       top: '-210px'});
+			}
+	}
+	
+function toggleUp(){
+	
+if($('#my-collaspible2').css("top").replace("px","")==prevPos){
+	
+	$('#my-collaspible2').animate({
+      
+	   top:(prevPos-divHeight+5)+'px'
+	   })
+	 	}else{
+	
+		$('#my-collaspible2').animate({
+      top:prevPos+'px'
+	  
+	   })
+			}
+	}
+
+$(document).ready(function(e) {
+	  
+    if(!isTouchDevice()){
+		setTimeout(function(){
+			 prevPos =$('#my-collaspible2').css("top").replace("px","");
+	   divHeight=$('#my-collaspible2').css("borderBottom").substring(0,3).replace(/\D+/, '');
+	   
+			toggleUp()},800);
+		}else{
+				 prevPos =$('#my-collaspible2').css("top").replace("px","");
+	   divHeight=$('#my-collaspible2').css("borderBottom").substring(0,3).replace(/\D+/, '');
+			}
+});
+
+function infoToggle(){
+	var i=$(".info");
+
+	if($(i[0]).css("visibility")=="hidden"){
+		
+		i.css("visibility","visible");
+		
+		}else{
+		i.css("visibility","hidden");
+	}
+	
+	}
+</script>
+<body> 
+
+<div data-role="page" id="pinchable" style="overflow:hidden">
+  <div style="position:absolute;top:-210px;height:200px;background:#F00;border-radius:0px;z-index:10;width:100%" id="my-collaspible" >
+  	<a onClick="toggleDown()" data-role="button" data-icon="delete"  style="width:200px;left:2%;top:5%;">Chiudi</a>
+    <a onClick="toggleUp()"  data-role="button" data-icon="bars"  style="width:200px;left:2%;top:12%;">Comandi</a>
+    <a onClick="infoToggle()" data-role="button" data-icon="info"  style="width:200px;left:2%;top:18%;">Più informazioni</a>
+     <fieldset data-role="controlgroup" style="position:absolute;width:220px; left:23%;top:5%;">
+          <input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" onClick="changeListener()" />
+          <label for="checkbox-1">Personali</label>
+          <input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" onClick="changeListener()"  />
+           <label for="checkbox-2">Suggerimenti</label>
+           </fieldset>
+     </div>
+	<div data-role="content" >	
+		<a class="abc" onClick="toggleDown()"  style="width:60px;left:72%;height:60px;border-radius:60px;background-image: url('gear.png');"   data-role="button"  data-iconpos="notext"></a>
+        <a class="abc"  href="#positionWindow"  data-transition="flow" data-rel="popup" data-position-to="window"  style="width:60px;left:82%;height:60px;border-radius:60px;background-image: url('help.png');"   data-role="button"  data-iconpos="notext"></a>
+      
+
+<div data-role="popup" id="positionWindow" style="width:200px;height:200px;">
+<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+	<p>I am positioned to the window.</p>
+</div>
+	</div>
+<div class="console" style="position:absolute;top:100%;width:80%;margin-left:10%;margin-right:10%;border-radius:0px;z-index:10;" id="my-collaspible2" >
+<a onClick="toggleUp()" style="position:absolute" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>
+      <a class="abc" style="width:60px;left:15%;height:60px;border-radius:60px;z-index:15;background-image: url('left.png');"   data-role="button"  data-iconpos="notext"></a>
+      <a class="info" style="left:25%;" data-role="button">
+      <h6 style="position:relative;top:-35px;left:-3px">Anno</h6>
+     <h2 style="position:relative;top:-55px;left:-80%">1923</h2>
+      </a>
+      <a class="abc" style="width:60px;left:35%;height:60px;;border-radius:60px;z-index:15;background-image: url('right.png');"   data-role="button"  data-iconpos="notext"></a>
+      <a class="abc" style="width:60px;left:55%;height:60px;border-radius:60px;z-index:15;background-image: url('zoomIn.png');"   data-role="button"  data-iconpos="notext"></a>
+       <a class="info" style="left:65%;" data-role="button">
+     <h6 style="position:relative;top:-35px;left:-3px">Scala</h6>
+     <h2 style="position:relative;top:-55px;left:-60%">2.3x</h2>
+      </a>
+      <a class="abc" style="width:60px;left:75%;height:60px;border-radius:60px;z-index:15;background-image: url('zoomOut.png');"   data-role="button"  data-iconpos="notext"></a>
+        </div>
+   
+</div>
+
+</div>
+
+
+
+</body>
+</html>
