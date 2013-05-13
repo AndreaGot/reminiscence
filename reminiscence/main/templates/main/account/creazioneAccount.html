@@ -80,12 +80,12 @@
 					alert(u.nome+" "+u.cognome+" "+u.anno_nascita+" "+u.mese_nascita+" "+u.giorno_nascita+" "+u.luogo_nascita+" "+u.email+" "+u.password);
 	
 					$.ajax({
-					  url: "account",
+					  type:"POST",
+					  url: " {% url 'main:conferma' %} ",
 					  data: JSON.stringify(u),
 					  processData: false,
 					  dataType: "json",
-					  success:function(a) { },	
-					  error:function() {}
+					  success:function() {}
 							});
 						
 					return true;
@@ -96,7 +96,7 @@
         
     </head>
     <body>
-    <form name="DatiPersonali" id="DatiPersonali" onsubmit="return controlla()" action="{% url 'main:conferma' %}" method="POST">
+    <form name="DatiPersonali" id="DatiPersonali" onsubmit="return controlla()" action="{% url 'main:fineAccount' %}" method="POST">
     {% csrf_token %}
     
 	<div data-role="page" id="NamePage">
@@ -192,7 +192,7 @@ u.nome=$("#user").val();
                             <option value="aug">Agosto</option>
                             <option value="sep">Settembre</option>
                             <option value="oct">Ottobre</option>
-                            <option value="now">Novembre</option>
+                            <option value="nov">Novembre</option>
                             <option value="dic">Dicembre</option>
                         </select>
 
