@@ -2,7 +2,9 @@
 from django.http import HttpResponse
 from django.template import Context, loader
 from django.shortcuts import render
+from django.utils import simplejson
 from reminiscence.main.models import Comune, Provincia, Regione, Anziano,Memoria,si_svolge_memoria,Decade
+from django.views.decorators.csrf import csrf_exempt
 
 # metodo di chiamata non efficiente qui sotto
 
@@ -81,8 +83,7 @@ def account(request):
 #
 # Conferma e verifica dati
 #
-"""
-def conferma(request):
+def conferma2(request):
 
 	user = request.POST.get('username')
 	com = request.POST.get('paese')
@@ -107,33 +108,37 @@ def conferma(request):
 	a.save()
 	return render(request, 'main/account/confermaAccount.html')
 
-"""
 	
 #
 #prova di implementazione salvataggio di un nuovo utente nel db tramite json
 #
 #@ajax(require='POST')
+@csrf_exempt
 def conferma(request):#se vogliamo provarla davvero e usarla al posto di conferma(request) basta rinominare le due funz
-
-	import pdb; pdb.set_trace()
-	json_data=simplejson.loads(request.data)
-	#json_data=request.POST.get('json')
 	
+	#import pdb; pdb.set_trace()
+	json_data=request.POST.get('json')
+	json_data=simplejson.loads(request.body)
+	
+	print "devosalvare"*150
 	a=Anziano()
-	a.nome = json_data.user
-	print("porcodue "+json_data.nome);
-	a.anno_nascita = json_data.anno
-	a.mese_nascita = json_data.mese
-	a.giorno_nascita = json_data.giorno
-	a.luogo_nascita = json_data.luogo
-	a.email = json_data.email
-	a.password = json_data.password
+	t = get_or_none(Comune, comune="Trento")
+	a.nome = json_data["nome"]
+	print("porcodue "+json_data["nome"])*300
+	a.anno_nascita = json_data["anno_nascita"]
+	a.mese_nascita = json_data["mese_nascita"]
+	a.giorno_nascita = json_data["giorno_nascita"]
+	a.luogo_nascita = t # json_data["luogo_nascita]
+	a.email = json_data["email"]
+	a.password = json_data["password"]
+	print "devosalvare"*150
 	a.save()
 	return render(request, 'main/account/confermaAccount.html')
 	
 
 
-
+def paginaConfermaAccount(request):
+	return render(request, 'main/account/confermaAccount.html')
 
 
 

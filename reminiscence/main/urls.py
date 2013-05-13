@@ -22,6 +22,7 @@ urlpatterns = patterns('',
 #
     url(r'^account/', views.account, name='account'),
     url(r'^conferma/', views.conferma, name='conferma'),
+    url(r'^fineAccount/', views.paginaConfermaAccount, name='fineAccount'),
     
 #
 # URL DI VISUALIZZAZIONE RICORDO
