@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html style="overflow:hidden">
+    
+    <head>
+        <meta charset="utf-8">
+        <title>Reminiscence</title>
+        <link href="stili/b.css" rel="stylesheet" type="text/css" />
+        <link href="jquery.mobile.structure-1.3.0.min.css" rel="stylesheet" type="text/css" />
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <script src="jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="jquery.mobile-1.3.0.min.js" type="text/javascript"></script>
+        <script src="reminiscence.js"  type="text/javascript"></script>
+          <script>
+        $(document).ready(function () {
+            var x = $(window).height();
+
+            var suffix = "px";
+            $("div[data-role='page']").css("height", x + suffix);
+			$("div[data-role='page']").css("overflow","hidden");
+            $("div[data-role='header']").css("height",(x * 0.15) + suffix);
+            $("div[data-role='content']").css("height", (x * 0.7) + suffix);
+            $("div[data-role='footer']").css("height", (x * 0.10) + suffix);
+        });
+    </script>
+
+    </head>
+  
+
+    
+    
+    
+    <body>
+        <div data-role="page" id="LoginPage">
+            <div data-role="header">
+                 <p class="header" style="position:relative;top:-25px">Reminiscence</p>
+ <a class="abc" id="popUpTouch"  href="#positionWindow"  data-transition="flow" data-rel="popup" data-position-to="window"  style="position:absolute;width:60px;left:92%;height:60px;border-radius:60px;background-image: url('help.png');z-index:25;border:0px"   data-role="button"  data-iconpos="notext"></a>
+            </div>
+            <div data-role="content" style="width:100%;text-align:center" data-theme="a">
+            <div style="position:relative;background:none">
+                 <h2 style="width:50%;float: left">Cognome</h2>
+  				 <h2 style="width:50%;float: right">Nome</h2>
+                 
+   <div style="position:relative;width:100%;column-count:2;-moz-column-count:2;-webkit-column-count:2;">
+                <div data-role="fieldcontain" style="position:relative;width:100%;float:left;display:inline-block; line-height: 100%;">
+                    <input style="font-size:25px" type="text" name="lastname" id="lastname" value="" />
+                </div>
+              <div  data-role="fieldcontain" style="position:relative;width:100%;position: relative;float: right;display:inline-block; line-height: 100%;" >
+                    <input style="font-size:25px" text="name" id="name" value="" />
+                   
+                </div>
+                </div>
+               
+                </div>
+                 <h2 id="errorTarget">Parola chiave</h2>
+
+                <div id="passwordBox" data-role="fieldcontain" style="width:80%;margin-left:10%;margin-right:10%">
+                    <input type="password" name="name" id="password" value="" />
+                </div>
+               
+                    <a onClick="login()"  style="width:45%;margin-left:27.5%;line-height:50%"  data-role="button"  data-transition="slide">Entra</a>
+               
+            </div>
+            <div data-role="footer">
+               
+                    <a  style="width:45%;margin-left:50%;top:15%;"  href="#NamePage" data-role="button" data-transition="slide">Nuovo Account</a>
+               
+            </div>
+        </div>
+        <script>
+		var prevVal;
+		function showError(){
+			prevVal=$("#errorTarget").html();
+			$("#errorTarget").css("color","red");
+			$("#errorTarget").html("Dati non validi");
+			$("#password").parent().toggleClass("error");
+	/*		$("#passwordBox").css({"-moz-box-shadow": "0px 0px 12px #f00",
+		"-webkit-box-shadow": "0px 0px 12px  #f00",
+		"box-shadow": "0px 0px 12px  #f00"});*/
+		setTimeout(function(){
+				$("#errorTarget").css("color","white");
+			$("#errorTarget").html(prevVal);
+				$("#password").parent().toggleClass("error");
+				},2000);
+			
+			};
+			var regex=/^[a-zA-Zàèìòù]*$/;
+        function login(){
+			var validData=true;
+			
+			var name,lastname,pwd;
+			name=$("#name").val();
+			lastname=$("#cognome").val();
+			pwd=$("#password").val();
+			if(!regex.test(name)||name.length<3){
+			showError();
+			validData=false;
+			}
+			if(!regex.test(lastname)||lastname.length<3){
+			showError();validData=false;
+			}
+			if(pwd.length<8){
+			showError();
+			validData=false;
+			}
+			
+			if(validData) {
+				var data={
+					"nome":name,
+					"cognome":lastname,
+					"password":pwd				
+					}
+					//POST DATA
+				}
+			
+			}
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <div data-role="page" id="NamePage">
+            <div data-role="header">
+                  <a  style="width:25%;margin-left:5%;top:5%;"  href="#LoginPage" data-role="button" data-transition="slide">Esci</a>      
+  <p class="header">Dati Personali</p>
+            </div>
+            <div data-role="content" data-theme="a">
+             <div style="background:none">
+                 <h2 id="lastNameTitle" style="width:50%;float: left">Cognome</h2>
+  				 <h2 id="nameTitle" style="width:50%;float: right">Nome</h2>
+                 
+   <div style="width:100%;column-count:2;-moz-column-count:2;-webkit-column-count:2;">
+                <div data-role="fieldcontain" style="position:relative;width:100%;float:left;display:inline-block; line-height: 100%;">
+                    <input style="font-size:25px" type="text" name="lastname" id="insertLastname" value="" />
+                </div>
+              <div  data-role="fieldcontain" style="width:100%;position: relative;float: right;display:inline-block; line-height: 100%;" >
+                    <input style="font-size:25px" text="name" id="insertName" value="" />
+                   
+                </div> </div>
+                </div>
+                
+                 <h2 id="placeTitle">Provenienza</h2>
+<script>
+$(document).ready(function(e) {
+   $("#ComList").children().click(function(){
+	  $("input[data-type='search']").val(this.innerHTML);
+	  $("#ComList").children().addClass("ui-screen-hidden");
+	  });
+	// alert( $("#commListContainer").children().get(0).tagName);
+	   /*	#commListContainer form{
+			height:80px;
+			}
+			#commListContainer form{
+			top:20px;
+			}*/
+		 
+});
+</script>
+                <div id="commListContainer" data-demo-html="true" style="width:75%;margin-left:auto;margin-right:auto;background:rgba(0,0,0,0)" >
+                    <ul  data-role="listview" data-filter="true" id="ComList" data-filter-reveal="true" data-filter-placeholder="Dove sei vissuto piu a lungo?">
+                        <li>Ala</li>
+                     <!-- <li>Albiano</li>
+                        <li>Aldeno</li>
+                        <li>Amblar</li>
+                        <li>Andalo</li>
+                        <li>Arco</li>
+                        <li>Avio</li>
+                        <li>Baselga di Pinè</li>
+                        <li>Bedollo</li>
+                        <li>Bersone</li>
+                        <li>Besenello</li>
+                        <li>Bieno</li>
+                        <li>Bleggio Superiore</li>
+                        <li>Bocenago</li>
+                        <li>Bolbeno</li>
+                        <li>Bondo</li>
+                        <li>Bondone</li>
+                        <li>Borgo Valsugana</li>
+                        <li>Bosentino</li>
+                        <li>Breguzzo</li>
+                        <li>Brentonico</li>
+                        <li>Bresimo</li>
+                        <li>Brez</li>
+                        <li>Brione</li>
+                        <li>Caderzone</li>
+                        <li>Cagnò</li>
+                        <li>Calavino</li>
+                        <li>Calceranica al Lago</li>
+                        <li>Caldes</li>
+                        <li>Caldonazzo</li>
+                        <li>Calliano</li>
+                        <li>Campitello di Fassa/Ciampedel</li>
+                        <li>Campodenno</li>
+                        <li>Canal San Bovo</li>
+                        <li>Canazei/Cianacei</li>
+                        <li>Capriana</li>
+                        <li>Carano</li>
+                        <li>Carisolo</li>
+                        <li>Carzano</li>
+                        <li>Castel</li>
+                        <li>Condino</li>
+                        <li>Castelfondo</li>
+                        <li>Castello Molina di Fiemme</li>
+                        <li>Castello Tesino</li>
+                        <li>Castelnuovo</li>
+                        <li>Cavalese</li>
+                        <li>Cavareno</li>
+                        <li>Cavedago</li>
+                        <li>Cavedine</li>
+                        <li>Cavizzana</li>
+                        <li>Cembra</li>
+                        <li>Centa San Nicolò</li>
+                        <li>Cimego</li>
+                        <li>Cimone</li>
+                        <li>Cinte Tesino</li>
+                        <li>Cis</li>
+                        <li>Civezzano</li>
+                        <li>Cles</li>
+                        <li>Cloz</li>
+                        <li>Comano Terme</li>
+                        <li>Commezzadura</li>
+                        <li>Condino</li>
+                        <li>Coredo</li>
+                        <li>Croviana</li>
+                        <li>Cunevo</li>
+                        <li>Daiano</li>
+                        <li>Dambel</li>
+                        <li>Daone</li>
+                        <li>Darè</li>
+                        <li>Denno</li>
+                        <li>Dimaro</li>
+                        <li>Don</li>
+                        <li>Dorsino</li>
+                        <li>Drena</li>
+                        <li>Dro</li>
+                        <li>Faedo</li>
+                        <li>Fai della Paganella</li>
+                        <li>Faver</li>
+                        <li>Fiavè</li>
+                        <li>Fiera di Primiero</li>
+                        <li>Fierozzo-Vlarotz</li>
+                        <li>Flavon</li>
+                        <li>Folgaria</li>
+                        <li>Fondo</li>
+                        <li>Fornace</li>
+                        <li>Frassilongo/Garait</li>
+                        <li>Garniga Terme</li>
+                        <li>Giovo</li>
+                        <li>Giustino</li>
+                        <li>Grauno</li>
+                        <li>Grigno</li>
+                        <li>Grumes</li>
+                        <li>Imer</li>
+                        <li>Isera</li>
+                        <li>Ivano-Fracena</li>
+                        <li>Lardaro</li>
+                        <li>Lasino</li>
+                        <li>Lavarone</li>
+                        <li>Lavis</li>
+                        <li>Ledro</li>
+                        <li>Levico Terme</li>
+                        <li>Lisignago</li>
+                        <li>Livo</li>
+                        <li>Lona-Lases</li>
+                        <li>Luserna/Lusern</li>
+                        <li>Malè</li>
+                        <li>Malosco</li>
+                        <li>Massimeno</li>
+                        <li>Mazzin/Mazin</li>
+                        <li>Mezzana</li>
+                        <li>Mezzano</li>
+                        <li>Mezzocorona</li>
+                        <li>Mezzolombardo</li>
+                        <li>Moena</li>
+                        <li>Molveno</li>
+                        <li>Monclassico</li>
+                        <li>Montagne</li>
+                        <li>Mori</li>
+                        <li>Nago-Torbole</li>
+                        <li>Nanno</li>
+                        <li>Nave San Rocco</li>
+                        <li>Nogaredo</li>
+                        <li>Nomi</li>
+                        <li>Novaledo</li>
+                        <li>Ospedaletto</li>
+                        <li>Ossana</li>
+                        <li>Padergnone</li>
+                        <li>Palù del Fersina/Palai en Bersntol</li>
+                        <li>Panchià</li>
+                        <li>Peio</li>
+                        <li>Pellizzano</li>
+                        <li>Pelugo</li>
+                        <li>Pergine Valsugana</li>
+                        <li>Pieve di Bono</li>
+                        <li>Pieve Tesino</li>
+                        <li>Pinzolo</li>
+                        <li>Pomarolo</li>
+                        <li>Pozza di Fassa/Poza</li>
+                        <li>Praso</li>
+                        <li>Predazzo</li>
+                        <li>Preore</li>
+                        <li>Prezzo</li>
+                        <li>Rabbi</li>
+                        <li>Ragoli</li>
+                        <li>Revò</li>
+                        <li>Riva del Garda</li>
+                        <li>Romallo</li>
+                        <li>Romeno</li>
+                        <li>Roncegno Terme</li>
+                        <li>Ronchi Valsugana</li>
+                        <li>Roncone</li>
+                        <li>Ronzo Chienis</li>
+                        <li>Ronzone</li>
+                        <li>Roverè della Luna</li>
+                        <li>Rovereto</li>
+                        <li>Ruffrè-Mendola</li>
+                        <li>Rumo</li>
+                        <li>Sagron Mis</li>
+                        <li>Samone</li>
+                        <li>San Lorenzo in Banale</li>
+                        <li>San Michele all'Adige</li>
+                        <li>Sant'Orsola Terme</li>
+                        <li>Sanzeno</li>
+                        <li>Sarnonico</li>
+                        <li>Scurelle</li>
+                        <li>Segonzano</li>
+                        <li>Sfruz</li>
+                        <li>Siror</li>
+                        <li>Smarano</li>
+                        <li>Soraga</li>
+                        <li>Sover</li>
+                        <li>Spera</li>
+                        <li>Spiazzo</li>
+                        <li>Spormaggiore</li>
+                        <li>Sporminore</li>
+                        <li>Stenico</li>
+                        <li>Storo</li>
+                        <li>Strembo</li>
+                        <li>Strigno</li>
+                        <li>Taio</li>
+                        <li>Tassullo</li>
+                        <li>Telve</li>
+                        <li>Telve di Sopra</li>
+                        <li>Tenna</li>
+                        <li>Tenno</li>
+                        <li>Terlago</li>
+                        <li>Terragnolo</li>
+                        <li>Terres</li>
+                        <li>Terzolas</li>
+                        <li>Tesero</li>
+                        <li>Tione di Trento</li>
+                        <li>Ton</li>
+                        <li>Tonadico</li>
+                        <li>Torcegno</li>
+                        <li>Trambileno</li>
+                        <li>Transacqua</li>
+                        <li>Trento</li>
+                        <li>Tres</li>
+                        <li>Tuenno</li>
+                        <li>Valda</li>
+                        <li>Valfloriana</li>
+                        <li>Vallarsa</li>
+                        <li>Varena</li>
+                        <li>Vattaro</li>
+                        <li>Vermiglio</li>
+                        <li>Vervò</li>
+                        <li>Vezzano</li>
+                        <li>Vignola-Falesina</li>
+                        <li>Vigo di Fassa/Vich</li>
+                        <li>Vigo Rendena</li>
+                        <li>Vigolo Vattaro</li>
+                        <li>Villa Agnedo</li>
+                        <li>Villa Lagarina</li>
+                        <li>Villa Rendena</li>
+                        <li>Volano</li>
+                        <li>Zambana</li>
+                        <li>Ziano di Fiemme</li>-->
+                        <li>Zuclo</li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="footer">
+        <a  style="width:45%;margin-left:50%;top:35%;" onClick="addNameLocation()"   data-role="button" data-transition="slide">Avanti</a>
+    
+            </div>
+        </div>
+        <script>
+		/*href="#BirthPage"*/
+		var utente=[];
+		function addNameLocation(){
+			var valid=true;
+			utente["name"]=$("#insertName").val();
+			utente["lastname"]=$("#insertLastname").val();
+			utente["place"]=$("input[data-type='search']").val();
+			if(!regex.test(utente["name"])||utente["name"].length<3){
+			showNameError(1);valid=false;
+				}
+				
+				if(!regex.test(utente["lastname"])||utente["lastname"].length<3){
+					showNameError(2);valid=false;
+					}
+					
+					if(!regex.test(utente["place"])||utente["place"].length<2){
+						showNameError(3);valid=false;
+						}
+						if(valid){
+							$.mobile.changePage("#BirthPage");
+							}
+			}
+			var prevVal1,prevVal2,prevVal3;
+       	function showNameError(val){
+var text,div;
+
+		if(val==1){
+			prevVal1=$("#nameTitle").html();
+		
+			$("#nameTitle").html("Dati non validi").css("color","red");
+			$("#insertName").parent().toggleClass("error");
+			
+				setTimeout(function(){
+				$("#nameTitle").css("color","white").html(prevVal1);
+				
+				$("#insertName").parent().toggleClass("error");
+				
+				},2000);
+			}else if(val==2){
+				prevVal2=$("#lastNameTitle").html();
+				
+				$("#lastNameTitle").html("Dati non validi").css("color","red");
+				$("#insertLastname").parent().toggleClass("error");
+				
+					setTimeout(function(){
+				$("#lastNameTitle").css("color","white").html(prevVal2);
+				$("#insertLastname").parent().toggleClass("error");
+				},2000);
+				
+			}else if(val==3){
+			
+				prevVal3=$("#placeTitle").html();	
+				$("#placeTitle").html("Dati non validi").css("color","red");
+				$("input[data-type='search']").parent().toggleClass("error");
+				
+					setTimeout(function(){
+				$("#placeTitle").css("color","white").html(prevVal3);
+				$("input[data-type='search']").parent().toggleClass("error");
+				},2000);
+			}
+			
+
+	
+			
+			};
+        
+        </script>
+
+        
+        
+        <div data-role="page" id="BirthPage" style="width:100%;height:100%">
+            <div data-role="header">
+             <a  style="width:25%;margin-left:5%;top:5%;"  href="#NamePage" data-role="button" data-transition="slide">Indietro</a> 
+                  <p class="header">Dati Personali</p>
+
+            </div>
+            <div  data-role="content" data-theme="a">
+                 <h2 id="birthDateTitle"  style="text-align:center;">Data di nascita</h2>
+
+<div id="selectDate" data-role="controlgroup" data-type="horizontal" >
+    <label id="dayLabel" for="select-choice-day">Day</label>
+                        <select name="select-choice-day" id="select-choice-day" >
+                            <option>Giorno</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                            <option value=8>8</option>
+                            <option value=9>9</option>
+                            <option value=10>10</option>
+                            <option value=11>11</option>
+                            <option value=12>12</option>
+                            <option value=13>13</option>
+                            <option value=14>14</option>
+                            <option value=15>15</option>
+                            <option value=16>16</option>
+                            <option value=17>17</option>
+                            <option value=18>18</option>
+                            <option value=19>19</option>
+                            <option value=20>20</option>
+                            <option value=21>21</option>
+                            <option value=22>22</option>
+                            <option value=23>23</option>
+                            <option value=24>24</option>
+                            <option value=25>25</option>
+                            <option value=26>26</option>
+                            <option value=27>27</option>
+                            <option value=28>28</option>
+                            <option value=29>29</option>
+                            <option value=30>30</option>
+                            <option value=31>31</option>
+                        </select>
+                        <label for="select-choice-month">Month</label>
+                        <select name="select-choice-month" id="select-choice-month">
+                            <option>Mese</option>
+                            <option value="1">Gennaio</option>
+                            <option value="2">Febbraio</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Aprile</option>
+                            <option value="5">Maggio</option>
+                            <option value="6">Giugno</option>
+                            <option value="7">Luglio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Settembre</option>
+                            <option value="10">Ottobre</option>
+                            <option value="11">Novembre</option>
+                            <option value="12">Dicembre</option>
+                        </select>
+                        <label for="select-choice-year">Year</label>
+                        <select name="select-choice-year" id="select-choice-year">
+                            <option>Anno</option>
+                            <option value=1910>1910</option>
+                            <option value=1911>1911</option>
+                            <option value=1912>1912</option>
+                            <option value=1913>1913</option>
+                            <option value=1914>1914</option>
+                            <option value=1915>1915</option>
+                            <option value=1916>1916</option>
+                            <option value=1917>1917</option>
+                            <option value=1918>1918</option>
+                            <option value=1919>1919</option>
+                            <option value=1920>1920</option>
+                            <option value=1921>1921</option>
+                            <option value=1922>1922</option>
+                            <option value=1923>1923</option>
+                            <option value=1924>1924</option>
+                            <option value=1925>1925</option>
+                            <option value=1926>1926</option>
+                            <option value=1927>1927</option>
+                            <option value=1928>1928</option>
+                            <option value=1929>1929</option>
+                            <option value=1930>1930</option>
+                            <option value=1931>1931</option>
+                            <option value=1932>1932</option>
+                            <option value=1933>1933</option>
+                            <option value=1934>1934</option>
+                            <option value=1935>1935</option>
+                            <option value=1936>1936</option>
+                            <option value=1937>1937</option>
+                            <option value=1938>1938</option>
+                            <option value=1939>1939</option>
+                            <option value=1940>1940</option>
+                            <option value=1941>1941</option>
+                            <option value=1942>1942</option>
+                            <option value=1943>1943</option>
+                            <option value=1944>1944</option>
+                            <option value=1945>1945</option>
+                            <option value=1946>1946</option>
+                            <option value=1947>1947</option>
+                            <option value=1948>1948</option>
+                            <option value=1949>1949</option>
+                            <option value=1950>1950</option>
+                            <option value=1951>1951</option>
+                            <option value=1952>1952</option>
+                            <option value=1953>1953</option>
+                            <option value=1954>1954</option>
+                            <option value=1955>1955</option>
+                            <option value=1956>1956</option>
+                            <option value=1957>1957</option>
+                            <option value=1958>1958</option>
+                            <option value=1959>1959</option>
+                            <option value=1960>1960</option>
+                            <option value=1961>1961</option>
+                            <option value=1962>1962</option>
+                            <option value=1963>1963</option>
+                            <option value=1964>1964</option>
+                            <option value=1965>1965</option>
+                            <option value=1966>1966</option>
+                            <option value=1967>1967</option>
+                            <option value=1968>1968</option>
+                            <option value=1969>1969</option>
+                            <option value=1970>1970</option>
+                            <option value=1971>1971</option>
+                            <option value=1972>1972</option>
+                            <option value=1973>1973</option>
+                            <option value=1974>1974</option>
+                            <option value=1975>1975</option>
+                            <option value=1976>1976</option>
+                            <option value=1977>1977</option>
+                            <option value=1978>1978</option>
+                            <option value=1979>1979</option>
+                            <option value=1980>1980</option>
+                            <option value=1981>1981</option>
+                            <option value=1982>1982</option>
+                            <option value=1983>1983</option>
+                            <option value=1984>1984</option>
+                            <option value=1985>1985</option>
+                            <option value=1986>1986</option>
+                            <option value=1987>1987</option>
+                            <option value=1988>1988</option>
+                            <option value=1989>1989</option>
+                            <option value=1990>1990</option>
+                            <option value=1991>1991</option>
+                            <option value=1992>1992</option>
+                            <option value=1993>1993</option>
+                            <option value=1994>1994</option>
+                            <option value=1995>1995</option>
+                            <option value=1996>1996</option>
+                            <option value=1997>1997</option>
+                            <option value=1998>1998</option>
+                            <option value=1999>1999</option>
+                        </select>
+</div>
+               
+            </div>
+            <div data-role="footer">
+             <a onClick="addBirthDate()"  style="width:45%;margin-left:50%;top:35%;" data-role="button" data-transition="slide">Avanti</a>
+            
+            </div>
+        </div>
+        
+        <script>
+       
+		var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
+		function addBirthDate(){
+			var valid=true;
+			utente["year"]=$("#select-choice-year").val();
+			utente["month"]=$("#select-choice-month").val();
+			utente["day"]=$("#select-choice-day").val();
+			
+			if(utente["year"]!="Anno"&&utente["month"]!="Mese"&&utente["day"]!="Giorno"){
+					//alert(utente["day"]+" "+daysInMonth[utente["month"]]);
+				if(utente["day"]<=daysInMonth[utente["month"]-1]){
+				
+					$.mobile.changePage("#PasswordPage");
+					}else{
+						showDateError("Inserire una data valida");
+							
+					}
+				}else{
+					showDateError("Inserire una data");
+				}
+		
+			}
+			
+			var titleTmp;
+       	function showDateError(msg){
+			titleTmp=$("#birthDateTitle").html();
+			$("#birthDateTitle").html(msg).css("color","red");
+			$("#selectDate").toggleClass("error");
+			
+				setTimeout(function(){
+				$("#birthDateTitle").css("color","white").html(titleTmp);
+				
+				$("#selectDate").toggleClass("error");
+				
+				},2000);
+		}
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <div data-role="page" id="PasswordPage">
+            <div data-role="header">
+            <a  style="width:25%;margin-left:5%;top:5%;"  href="#BirthPage" data-role="button" data-transition="slide">Indietro</a> 
+                  <p class="header">Dati Personali</p>
+
+            </div>
+            <div data-role="content" data-theme="a">
+                <div data-role="fieldcontain" >
+                    <div >
+                       <h2 id="password1Title" style="width:50%;float: left">Inserire Parola Chiave</h2>
+  				 <h2 id="password2Title" style="width:50%;float: right">Reinserire Parola Chiave</h2>
+                 
+   <div style="width:100%;column-count:2;-moz-column-count:2;-webkit-column-count:2;">
+                <div data-role="fieldcontain" style="position:relative;width:100%;float:left;display:inline-block; line-height: 100%;">
+                    <input style="font-size:25px" type="password" name="lastname" id="password1" value="" />
+                </div>
+              <div  data-role="fieldcontain" style="width:100%;position: relative;float: right;display:inline-block; line-height: 100%;" >
+                    <input style="font-size:25px"  type="password" text="name" id="password2" value="" />
+                   
+                </div> </div>
+                </div>
+                
+                       
+                    <div >
+                         <h2 id="emailTitle">E-mail</h2>
+						<input style="font-size:25px" type="email" name="name" id="email" value="" placeholder="tua o di un parente.."/>
+                    </div>
+                </div>
+            </div>
+            <div data-role="footer">
+             <a onClick="addPassEmail()"  style="width:45%;margin-left:50%;top:35%;" data-role="button" data-transition="slide">Fine</a>
+        
+            </div>
+        </div>
+        
+		</div>
+        
+        <script>
+         /*href="#Timeline" */
+		  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        function addPassEmail(){
+			var pass2=$("#password2").val();;
+			utente["password"]=$("#password1").val();
+			utente["e-mail"]=$("#email").val();
+			if(utente["password"].length<8){
+				showPasswordError(true);
+				}else if(utente["password"]!=pass2){
+						showPasswordError(false);
+				}else if(!re.test(utente["e-mail"])){showEmailError()}else{
+					//$.ajax(
+					//SECONDO AJAX
+					
+					$.mobile.changePage("#Timeline");
+					}
+		}
+	var emailTmp;
+	function showEmailError(){
+			emailTmp=$("#emailTitle").html();
+					$("#emailTitle").html("Indirizzo non valido").css("color","red");	
+					$("#email").parent().toggleClass("error");
+					setTimeout(function(){
+				$("#emailTitle").css("color","white").html(emailTmp);
+				$("#email").parent().toggleClass("error");
+				},2000);
+		
+		}
+	
+	
+		var titleTemp;
+		function showPasswordError(msg){
+			if(msg){
+				titleTemp=$("#password1Title").html();
+					$("#password1Title").html("Parola non valida").css("color","red");	
+					$("#password1").parent().toggleClass("error");
+					setTimeout(function(){
+				$("#password1Title").css("color","white").html(titleTemp);
+				$("#password1").parent().toggleClass("error");
+				},2000);
+				}else{
+					
+						titleTemp=$("#password2Title").html();
+					$("#password2Title").html("Le parole non coincidono").css("color","red");	
+					$("#password2").parent().toggleClass("error");
+					setTimeout(function(){
+				$("#password2Title").css("color","white").html(titleTemp);
+				$("#password2").parent().toggleClass("error");
+				},2000);
+				}
+		
+			}
+		
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--QUI INIZIA IL DRAMMA-->
+        
+        
+        
+        
+        
+        
+        <div data-role="page" id="Timeline">
+     <div id="settings" data-role="panel"  data-position="left" data-display="overlay" data-dismissible="true" data-theme="a">
+    <a href="" data-role="button" data-theme="a">Sicurezza</a>
+    <a href="#FriendsPage" data-role="button" data-theme="a">Visualizza amici</a>
+    <a href="#FindFriendsPage" data-role="button" data-theme="a">Cerca persona</a>
+     <a href="#my-header" data-rel="close" data-role="button" data-theme="a">Chiudi</a>
+    </div>
+
+  
+            <div data-role="header">
+           
+             <a href="#settings" data-role="button" data-icon="gear" data-iconpos="right">Impostazioni</a>
+ <p class="header">Ricordi</p>
+ <a href="#addRecordPage" data-role="button" data-icon="plus"  data-iconpos="right">Aggiungi ricordo</a>
+
+            </div>
+            <div data-role="content" data-theme="a">
+            <script>
+            function changePage(e) {
+				if(currentData!=null){
+					var tg=$("#goToModify");
+					//alert(currentData.private);
+					if(currentData.private){
+						tg.show();
+						tg.attr("style","width:45%;margin-left:50%;top:35%;");
+						}else{
+						tg.hide(); 
+						
+						
+						}
+					}
+       			 $.mobile.changePage("#ShowRecord");
+				 
+        }
+            </script>
+            
+             <div id="bgIndex" onClick="changePage()" style="width:75%;float:left">
+             <h2 id="recordTitle">Titolo</h2>
+          <img id="imageTitle" src="example.jpg" alt="image"/>
+          </div>
+            <div style="width:25%;float:right">
+            <fieldset data-role="controlgroup" >
+          <input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" onClick="changeListener()" />
+          <label for="checkbox-1">Personali</label>
+          <input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" onClick="changeListener()"  />
+           <label for="checkbox-2">Suggerimenti</label>
+           
+           
+           </fieldset></div>
+          </div>
+            <div data-role="footer">
+  
+              <div  id="timelineContainer" style="width:90%;margin-left:auto;margin-right:auto;margin-top:auto;" >
+                <div id='back'></div>
+                <input onChange="changeListener()" type="range" id="slider"   />
+              <script>
+			 	function record(src,title,text,year,private,place)
+				{
+				this.src=src;
+				this.title=title;
+				this.text=text;
+				this.year=year;
+				this.private=private;
+				this.place=place;
+				}
+					
+				Array.prototype.sortYears=function(){
+					this.sort(function sortfunction(a, b){
+					return a.year-b.year;
+					});
+					
+					}
+					
+					
+				Array.prototype.insertAndOrder=function(a){
+					this.push(a);
+					this.sortYears();
+					}
+					Array.prototype.findNearest=function(year){ //TROVA L'IMMAGINE PIU' VICINA!! COLLEGARE
+					for(var i=1; i<this.length;i++){
+						//alert(this[i].title);
+					if(this[i].year>=year){
+						var pos=Math.abs(this[i].year-year);
+						var neg=Math.abs(year-this[i-1].year);
+
+						return (neg<pos?this[i-1]:this[i]);
+						}
+							}
+							return this[this.length-1];
+						}
+
+function filterArray(array,private){
+	var retPriv=[];
+	var retPub=[];
+	for(var i=0; i<array.length;i++){
+		if(array[i].private){
+			retPriv.push(array[i]);
+			} else{
+				retPub.push(array[i]);
+				}
+		}
+		//alert(retPriv.length+" "+retPub.length);
+		if(private){
+			return retPriv;
+			}	else {return retPub;}	
+	}
+
+
+						
+/*function isPrivate(element) {
+	alert(element.text +" "+(element.private? "privato":"pubblico"));
+  return element.private;
+}	*/					
+Array.prototype.findNearestFiltred=function(year,personal,public){ //TROVA L'IMMAGINE PIU' VICINA!! COLLEGARE
+//alert("personali: "+personal+" "+"pubblici: "+public+" "+!public);
+if(!personal&&!public){
+	return null;
+	//alert("none");
+	}
+	
+	var newArray = this.slice();
+	
+	
+if(!personal){
+
+	newArray=filterArray(newArray,false);
+
+	return newArray.findNearest(year);
+	}
+if(!public){
+
+	newArray=filterArray(newArray,true);
+;
+	return newArray.findNearest(year);
+	}
+
+return this.findNearest(year);
+				
+						}
+						
+
+
+						
+	var generalRecords=[];
+  $(document).ready(function (e) {
+	$('#checkbox-1').prop('checked', true);
+	$('#checkbox-2').prop('checked', true);
+	for(var i=0;i<urls.length;i++){
+		records.push(new record(preHalf+urls[i],titles[i],"",dates[i],false,""));
+		}
+		records.sortYears();
+
+	  });
+	 var records=[];
+	 
+	   var preHalf="samplesImage/";
+	 
+	  
+	  var urls=[
+	  "1920 umberto nobile.jpg",
+	 "1930 fiat 508.jpg", 
+	  "1940  degasperi.jpg", 
+	 "1950 Sputnik.jpg", 
+	  "1960 armstrong .jpg" ,
+	  "1970 rai a colori.jpg" ,
+	  "1980 muro berlino.jpg" ,
+	  "1990 bandiera europa.jpg", 
+	  "1990 Borsellino.jpg", 
+	  "1990 Falcone.jpg", 
+	  "1990 mandela.jpg" 
+	  ];
+	    var titles=[
+	  "Impresa Umberto Nobile",
+	 "Fiat 508 Balilla", 
+	  "Degasperti Presidente", 
+	 "Sputnik", 
+	  "Armstrong, primo uomo sulla luna" ,
+	  "La rai è a colori" ,
+	  "Crolla il muro di Berlino" ,
+	  "Nasce l'europa", 
+	  "Strage di Via d'Amelio", 
+	  "Strage di Capaci", 
+	  "Fine dell'Apartheid" 
+	  ];
+	  var dates=[
+	 1925, 1935, 1945, 1955,1965, 1975, 1989, 1992,1991,1990,1994
+	  ];
+			  var span,distance,len,div; var years = [];
+			  			
+						var currentData;
+										function changeListener() {
+			
+					var val = $("#slider").val();
+					var index;
+					for (var j = 0; j < years.length; j++) {
+						if (val <= years[j]) {
+							index = j - 1;
+							j += years.length;
+						}
+					}
+				
+					var values = {
+						"width": distance,
+						"height": 60 + "px",
+						"position": "absolute",
+						"margin-left": (span + index * distance + 30) + "px",
+						"background-color": "#ff0000"
+					};
+					$("#back").css(values);
+				
+				
+					var v = $("#checkbox-1").prop("checked");
+					var v1 = $("#checkbox-2").prop("checked");
+					
+				
+					var a1 = records.findNearestFiltred(val, v, v1);
+			
+				if(a1!=null){
+					currentData=a1;
+					document.getElementById("recordTitle").innerHTML = a1.title;
+					var color;
+					if (a1.private) {
+						color = "Cyan";
+					} else {
+						color = "DarkGray ";
+					}
+					$("#bgIndex").css("background-color", color);
+					$("#imageTitle").attr("src", a1.src);
+				
+					$("#targetTitle1").text(a1.title);
+					$("#articlePic").attr("src", a1.src);
+					$("#imageTitle").css("height", "80%");}
+				
+				}
+									
+					
+			  $(document).ready(function (e) {
+							
+							  
+				  var container = $("#timelineContainer");
+				  var width = container.width();
+				  width = $(document).width();
+			
+			
+				  span = 50;
+				  width *= 0.9;
+				 
+				  var initialYear = 1910;
+				  var finalYear = new Date().getFullYear();
+				  $("#slider").attr("value",finalYear).attr("min",initialYear).attr("max",finalYear);
+						 var s;
+				
+
+    
+		
+				  var labelsNum = Math.round((width - 100) / 60) - 1;
+				  var gap = finalYear - initialYear;
+			
+				  var gap2 = gap / labelsNum;
+				 
+				  years.push(initialYear);
+				  for (var i = 0; i < labelsNum; i++) {
+					  var roundedYear = 10 * Math.round((initialYear + gap2 * i) / 10);
+					
+					  if (years.indexOf(roundedYear) < 0 && roundedYear > initialYear) {
+						  years.push(roundedYear);
+					  }
+				  }
+				  years.push(finalYear);
+				  len = years.length;
+				  gap /= len;
+				  distance = (width) / len;
+				  for (var i = 0; i < len; i++) {
+					  s = $('<p>' + years[i] + '<p>').css("position", "absolute").css("margin-left", span + (i) * distance);
+					  container.append(s);
+				  }
+		changeListener();
+			  });
+              </script>
+       
+                </div>
+            </div>
+        </div>
+   
+        <!--QUI FINISCE IL DRAMMA-->
+   
+   
+   
+   
+   
+   
+   
+    
+        
+        <div data-role="page" id="addRecordPage">
+            <div data-role="header">
+            <a  style="width:25%;margin-left:5%;top:5%;"  href="#Timeline" data-role="button" data-transition="slide">Indietro</a> 
+            <p class="header">Aggiungi Ricordo</p>
+
+            </div>
+            <div data-role="content" data-theme="a">
+            
+               <h2 id="memoryTitle">Titolo</h2>
+              <div data-role="fieldcontain" style="width:65%;margin-left:auto;margin-right:auto"  class="ui-hide-label">
+            
+              <script>
+              /*   $(document).ready(function () {
+        		$("#titleSource").change(
+				function(){
+					var tt=$("#targetTitle");
+					var t=$("#secondTarget");
+					tt.text($(this).val());
+					t.text($(this).val());
+					}				
+				);
+				
+			}); */ </script>
+                    <input  id="titleSource" style="font-size:25px" type="text" name="recordTitle"  value="" placeholder="Dai un titolo a questo ricordo..." />
+                    </div>
+               <h2 id="preciseDate">Inserisci la data precisa.....</h2>
+                     
+  <div  data-role="controlgroup" data-type="horizontal">
+  
+    <label for="select-choice-day1">Day</label>
+                        <select name="select-choice-day1" id="select-choice-day1">
+                            <option>Giorno</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                            <option value=8>8</option>
+                            <option value=9>9</option>
+                            <option value=10>10</option>
+                            <option value=11>11</option>
+                            <option value=12>12</option>
+                            <option value=13>13</option>
+                            <option value=14>14</option>
+                            <option value=15>15</option>
+                            <option value=16>16</option>
+                            <option value=17>17</option>
+                            <option value=18>18</option>
+                            <option value=19>19</option>
+                            <option value=20>20</option>
+                            <option value=21>21</option>
+                            <option value=22>22</option>
+                            <option value=23>23</option>
+                            <option value=24>24</option>
+                            <option value=25>25</option>
+                            <option value=26>26</option>
+                            <option value=27>27</option>
+                            <option value=28>28</option>
+                            <option value=29>29</option>
+                            <option value=30>30</option>
+                            <option value=31>31</option>
+                        </select>
+                        <label for="select-choice-month1">Month</label>
+                        <select name="select-choice-month1" id="select-choice-month1">
+                            <option>Mese</option>
+                            <option value="1">Gennaio</option>
+                            <option value="2">Febbraio</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Aprile</option>
+                            <option value="5">Maggio</option>
+                            <option value="6">Giugno</option>
+                            <option value="7">Luglio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Settembre</option>
+                            <option value="10">Ottobre</option>
+                            <option value="11">Novembre</option>
+                            <option value="12">Dicembre</option>
+                        </select>
+                        <label for="select-choice-year1">Year</label>
+                        <select name="select-choice-year1" id="select-choice-year1">
+                            <option>Anno</option>
+                            <option value=1910>1910</option>
+                            <option value=1911>1911</option>
+                            <option value=1912>1912</option>
+                            <option value=1913>1913</option>
+                            <option value=1914>1914</option>
+                            <option value=1915>1915</option>
+                            <option value=1916>1916</option>
+                            <option value=1917>1917</option>
+                            <option value=1918>1918</option>
+                            <option value=1919>1919</option>
+                            <option value=1920>1920</option>
+                            <option value=1921>1921</option>
+                            <option value=1922>1922</option>
+                            <option value=1923>1923</option>
+                            <option value=1924>1924</option>
+                            <option value=1925>1925</option>
+                            <option value=1926>1926</option>
+                            <option value=1927>1927</option>
+                            <option value=1928>1928</option>
+                            <option value=1929>1929</option>
+                            <option value=1930>1930</option>
+                            <option value=1931>1931</option>
+                            <option value=1932>1932</option>
+                            <option value=1933>1933</option>
+                            <option value=1934>1934</option>
+                            <option value=1935>1935</option>
+                            <option value=1936>1936</option>
+                            <option value=1937>1937</option>
+                            <option value=1938>1938</option>
+                            <option value=1939>1939</option>
+                            <option value=1940>1940</option>
+                            <option value=1941>1941</option>
+                            <option value=1942>1942</option>
+                            <option value=1943>1943</option>
+                            <option value=1944>1944</option>
+                            <option value=1945>1945</option>
+                            <option value=1946>1946</option>
+                            <option value=1947>1947</option>
+                            <option value=1948>1948</option>
+                            <option value=1949>1949</option>
+                            <option value=1950>1950</option>
+                            <option value=1951>1951</option>
+                            <option value=1952>1952</option>
+                            <option value=1953>1953</option>
+                            <option value=1954>1954</option>
+                            <option value=1955>1955</option>
+                            <option value=1956>1956</option>
+                            <option value=1957>1957</option>
+                            <option value=1958>1958</option>
+                            <option value=1959>1959</option>
+                            <option value=1960>1960</option>
+                            <option value=1961>1961</option>
+                            <option value=1962>1962</option>
+                            <option value=1963>1963</option>
+                            <option value=1964>1964</option>
+                            <option value=1965>1965</option>
+                            <option value=1966>1966</option>
+                            <option value=1967>1967</option>
+                            <option value=1968>1968</option>
+                            <option value=1969>1969</option>
+                            <option value=1970>1970</option>
+                            <option value=1971>1971</option>
+                            <option value=1972>1972</option>
+                            <option value=1973>1973</option>
+                            <option value=1974>1974</option>
+                            <option value=1975>1975</option>
+                            <option value=1976>1976</option>
+                            <option value=1977>1977</option>
+                            <option value=1978>1978</option>
+                            <option value=1979>1979</option>
+                            <option value=1980>1980</option>
+                            <option value=1981>1981</option>
+                            <option value=1982>1982</option>
+                            <option value=1983>1983</option>
+                            <option value=1984>1984</option>
+                            <option value=1985>1985</option>
+                            <option value=1986>1986</option>
+                            <option value=1987>1987</option>
+                            <option value=1988>1988</option>
+                            <option value=1989>1989</option>
+                            <option value=1990>1990</option>
+                            <option value=1991>1991</option>
+                            <option value=1992>1992</option>
+                            <option value=1993>1993</option>
+                            <option value=1994>1994</option>
+                            <option value=1995>1995</option>
+                            <option value=1996>1996</option>
+                            <option value=1997>1997</option>
+                            <option value=1998>1998</option>
+                            <option value=1999>1999</option>
+                        </select>
+</div>	   
+        
+             <h2 id="indicativeDate">... oppure scegli il periodo</h2>        
+             <div  data-role="controlgroup" style="width:65%;margin-left:auto;margin-right:auto" >
+ 
+ <select id="selectDecade" name="select-choice-min" id="select-choice-min" data-mini="true">
+  <option value="0">Decade</option>
+  <option value="10">Anni '10</option>
+   <option value="20">Anni '20</option>
+   <option value="30">Anni '30</option>
+   <option value="40">Anni '40</option>
+   <option value="50">Anni '50</option>
+   <option value="60">Anni '60</option>
+   <option value="70">Anni '70</option>
+   <option value="80">Anni '80</option>
+ <option value="90">Anni '90</option>
+</select> 
+                    
+                    </div>
+                </div>
+             
+                <script>
+				/*var date;
+                $(document).ready(function(e) {
+                    $("#goon").click(function(e) {
+							var selected = $("#select-choice-year1").val()			
+                   date=selected;
+				   
+				 		});
+                });*/
+                </script>
+				<div data-role="footer">
+           <a onClick="addTitleYear()" style="width:45%;margin-left:50%;top:35%;" id="goon"  data-role="button" data-transition="slide">Avanti</a>
+            </div>
+        </div>
+        <script>
+		var date="";
+		$(document).ready(function(e) {
+            fulldate={"day":$("#select-choice-day1").val(),"#select-choice-month1":$(this).val(),"year":$("#select-choice-year1").val()};
+			date= $("#selectDecade").val();
+			
+        });
+		var fulldate=[];
+		var dateLastSelected=true;
+		
+        $("#selectDecade").change(function(){
+			date=$(this).val();
+		
+			dateLastSelected=true;
+			});
+		$("#select-choice-day1").change(function(){
+			fulldate["day"]=$(this).val();
+			dateLastSelected=false;
+			});
+        	$("#select-choice-month1").change(function(){
+			fulldate["month"]=$(this).val();
+			dateLastSelected=false;
+			});
+				$("#select-choice-year1").change(function(){
+			fulldate["year"]=$(this).val();
+			dateLastSelected=false;
+			});
+      
+		
+		var memory=[];
+		//var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
+		function addTitleYear(){
+			
+			var goon=true;
+			memory["title"]=$("#titleSource").val();
+			//alert();
+			if(memory["title"].length==0){
+				showWrongTitle();goon=false;
+				}else if(!dateLastSelected){
+					
+					if(fulldate["year"]=="Anno"||fulldate["month"]=="Mese"||fulldate["day"]=="Giorno"){
+						showWrongDate(false);goon=false;}else{if(!(fulldate["day"]<=daysInMonth[fulldate["month"]-1])){
+								showWrongDate(false);goon=false;
+								}
+							
+							}
+					}else if(date==0){showWrongDate(true);goon=false;}
+					
+						if(goon){
+							if(dateLastSelected){
+								memory["year"]=fulldate["year"];
+									memory["month"]=fulldate["month"];
+										memory["day"]=fulldate["day"];
+								}else{
+								memory["year"]=date;
+									memory["month"]=date;
+										memory["day"]=date;
+								}
+								$.mobile.changePage("#place-photoPage");
+							}
+			}
+			
+			var titleTmp;
+			function showWrongTitle(){
+						titleTmp=$("#memoryTitle").html();
+					$("#memoryTitle").html("Inserisci un titolo").css("color","red");	
+					$("#titleSource").parent().toggleClass("error");
+					setTimeout(function(){
+				$("#memoryTitle").css("color","white").html(titleTmp);
+				$("#titleSource").parent().toggleClass("error");
+				},2000);
+				}
+				
+				var titleDate;	
+			function showWrongDate(valid){
+			
+				if(!valid){
+				titleDate=$("#preciseDate").html();
+				$("#preciseDate").html("Inserire una data valida").css("color","red");	
+					setTimeout(function(){
+				$("#preciseDate").css("color","white").html(titleTmp);
+			
+				},2000);
+				}else{
+					
+					titleDate=$("#indicativeDate").html();
+				$("#indicativeDate").html("Scegli una data indicativa...").css("color","red");	
+					setTimeout(function(){
+				$("#indicativeDate").css("color","white").html(titleTmp);
+			
+				},2000);
+					}
+				}	
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--FIX THIS-->
+        
+        
+         <div data-role="page" id="place-photoPage">
+            <div data-role="header">
+            <a  style="width:25%;margin-left:5%;top:5%;"  href="#addRecordPage" data-role="button" data-transition="slide">Indietro</a> 
+     <p class="header">Località e foto</p>
+       </div>
+            <div data-role="content" data-theme="a" >
+    
+     <div data-role="fieldcontain" style="width:65%;margin-left:auto;margin-right:auto;line-height:75%" >
+ <select id="stati"  name="select-choice" data-mini="true" >
+   <option value="af">Africa</option>
+   <option value="am">America</option>
+   <option value="an">Antartide</option>
+   <option value="as">Asia</option>
+   <option value="eu">Europa</option>
+   <option value="oc">Oceania</option>
+   <option value="it">Italia</option>
+ <option value="tr">Trentino</option>
+</select> 
+<div id="regioniDiv">
+<h2 >Dove di preciso?</h2>  
+ <select id="regioni"   name="select-choice-min"  data-mini="true" >     
+ <option value='null'>""</option>
+<option value='regione0'>Abruzzo</option>
+<option value='regione1'>Basilicata</option>
+<option value='regione2'>Calabria</option>
+<option value='regione3'>Campania</option>
+<option value='regione4'>Emilia-Romagna</option>
+<option value='regione5'>Friuli-Venezia Giulia</option>
+<option value='regione6'>Lazio</option>
+<option value='regione7'>Liguria</option>
+<option value='regione8'>Lombardia</option>
+<option value='regione9'>Marche</option>
+<option value='regione10'>Molise</option>
+<option value='regione11'>Piemonte</option>
+<option value='regione12'>Puglia</option>
+<option value='regione13'>Sardegna</option>
+<option value='regione14'>Sicilia</option>
+<option value='regione15'>Toscana</option>
+<option value='regione16'>Trentino-Alto Adige</option>
+<option value='regione17'>Umbria</option>
+<option value='regione18'>Valle d'Aosta</option>
+<option value='regione19'>Veneto</option>
+     </select></div> </div >
+     
+		<a id="phototoggle" data-role="button" style="width:65%;margin-left:auto;margin-right:auto;line-height:50%;" data-icon="star" data-iconpos="right">Fai una fotografia</a>  
+      
+           <div id="photo" style="background:transparent">
+          <img src="example.jpg" alt="picture" style="height:50%"/>
+          
+           
+          </div >
+     <script type="text/javascript">
+    /*    $(document).ready(function () {
+            $("#regioniDiv").hide(); $("#photo").hide();
+			$("#phototoggle").click(function(){
+				 $("#photo").toggle();
+				});
+			$("#stati").change(function() {
+			var selected = $("#stati").val()
+			if(selected=="it"){
+				 $("#regioniDiv").show();
+				}else{
+					   $("#regioniDiv").hide();
+					}
+				});
+			});  
+	*/		
+</script>
+    
+                  </div>
+             <div data-role="footer">
+               <a  style="width:45%;margin-left:50%;top:35%;"  href="#writeRecordPage" data-role="button" data-transition="slide">Avanti</a>
+                 
+            </div>
+            
+         </div>
+        
+          
+     <div data-role="page" id="writeRecordPage">
+            <div data-role="header" >
+      <a  style="width:25%;margin-left:5%;top:5%;"  href="#place-photoPage" data-role="button" data-transition="slide">Indietro</a> 
+ <p class="header" id="targetTitle"></p>
+            </div>
+            <div data-role="content" data-theme="a" >
+            <div style="width:25%;position:fixed;">
+          <img src="example.jpg" alt="imageRecord" style="float:left;width:100%"/>
+          </div>
+           <h2 >Ricordo</h2>
+          <textarea placeholder="Raccontaci un ricordo: puoi scrivere quanto vuoi..." style="float:right;width:70%;resize:vertical;min-height:45%"></textarea>
+            </div>
+         
+            <script>
+			var newRecord;
+            $(document).ready(function(e) {
+                    $("#goon2").click(function(e) {
+							var text = $("#targetTitle").text();	
+						newRecord=new record("example.jpg",text,"",date,true,"");
+						records.insertAndOrder(newRecord);
+						$("#secondTarget").val(text);
+						changeListener();
+				 var txt="";
+				 for(var i=0;i<records.length;i++){
+					 txt+=records[i].year;
+					 }
+						
+				 		});
+                });</script>
+                <div data-role="footer" >
+                  <a  style="width:45%;margin-left:50%;top:35%;" id="goon2" href="#Timeline" data-role="button" data-transition="slide">Fine</a>
+                  </div>
+                  </div>
+ 
+  
+     
+    <div data-role="page" id="ShowRecord">
+        <div data-role="header">
+        
+    <a  style="width:25%;margin-left:5%;top:5%;"  href="#Timeline" data-role="button" data-transition="slide">Indietro</a> 
+      <p class="header" id="targetTitle1"></p>
+      <script>
+	  $(document).ready(function(e) {
+		  var w=$(document).width();
+		  var s=Math.floor(w/200);
+		
+		  var s=(s>4)?4:s;
+		   $('#articlePic').css("width",w/s+"px");
+        $('#article').css(retVal(s));
+    });
+     function retVal(n){   
+	 return {
+  "-moz-column-count":""+ n,
+  "-webkit-column-count":""+ n,
+  "column-count":""+ n,
+};}
+      </script>
+  	
+
+     </div>
+        <div data-role="content" data-theme="a">
+       <div  id="article" >
+        <img id="articlePic" src="example.jpg" style="float:left;" alt="readPicture"/>
+    
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam semper lorem ut leo vulputate at porta nunc mollis. Sed bibendum ligula quis nibh pretium faucibus eget sed enim. Cras nisl risus, tempor a feugiat sit amet, porta ac odio. Aenean eu nisi a justo ultricies eleifend. Fusce vel nunc velit, eu varius nibh. In pulvinar ligula sapien, et pulvinar est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean neque ligula, rhoncus id accumsan eget, mollis a nisi. Praesent porta ultrices orci, eu tempor nisi aliquet eget. Vestibulum sem justo, pretium sagittis luctus vel, hendrerit eu arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque eu felis lorem. Quisque eu lacus lobortis urna vestibulum auctor. Sed laoreet, arcu eu tristique gravida, dolor dui tempus diam, et tincidunt sem sapien ut odio.
+
+Curabitur eget nisl libero. Mauris eget vestibulum ante. Sed lacinia iaculis aliquet. Curabitur eu mollis velit. Aliquam euismod elit eu diam varius dapibus. In varius, tellus et tristique eleifend, elit leo bibendum lorem, sit amet accumsan erat neque et risus. Nunc felis diam, mollis vel cursus molestie, luctus sit amet justo. Pellentesque mattis interdum velit et egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce quis nisi in nibh cursus commodo vel in lacus. Donec eget lectus magna, ac semper ipsum.
+
+Morbi eget rhoncus enim. Nunc vitae mauris nisi. Sed dictum arcu quis urna feugiat tincidunt. Maecenas aliquet mollis semper. Fusce elit est, pretium id dapibus eu, iaculis ultricies dui. Vivamus dignissim erat eu velit posuere aliquet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed volutpat nulla non lorem tincidunt convallis. Pellentesque blandit aliquam diam sed iaculis. In eleifend velit sed ante mattis dignissim. Cras sollicitudin congue sapien accumsan hendrerit. Fusce eu purus et orci condimentum tempus.
+
+Cras feugiat, quam ut sollicitudin rhoncus, urna nisi pulvinar orci, at fermentum massa eros eget justo. Morbi euismod ipsum ut nunc cursus quis semper sapien vulputate. Nam egestas ornare vestibulum. Donec mi orci, tristique non convallis id, adipiscing vel sem. Ut vitae risus nunc, id pharetra est. Nullam et nulla neque, ut tempus tellus. Quisque pretium dapibus mattis. Aenean non est odio. Fusce varius, diam in tempus hendrerit, felis est sodales ante, id tincidunt nibh massa porta nibh. Etiam non tortor ante. Phasellus sit amet lacus ut leo feugiat blandit. Nullam vel turpis sed leo hendrerit consectetur. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+
+Fusce dui nisi, vulputate eget laoreet id, interdum quis dui. Nulla dictum tellus vel turpis sodales ac consequat nunc pharetra. Integer odio urna, sodales at malesuada consectetur, egestas sed enim. Duis blandit molestie dictum. Duis convallis blandit purus quis volutpat. Nulla varius dignissim odio, eu facilisis urna lacinia a. Maecenas non commodo diam. Suspendisse eu massa quam. Etiam vestibulum mi vel dui iaculis eu lacinia ipsum tristique. Donec scelerisque tincidunt leo id consequat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras id orci vitae nisl luctus elementum ac egestas magna.
+     </div>
+        </div>
+        <div data-role="footer">
+        <a  id="goToModify" style="width:45%;margin-left:50%;top:35%;"  href="#modifyPage" data-role="button" data-transition="slide">Modifica</a>
+      
+            </div>
+        </div>
+
+
+
+<div data-role="page" id="modifyPage">
+            <div data-role="header">
+             <a  style="width:25%;margin-left:5%;top:5%;"  href="#ShowRecord" data-role="button" data-transition="slide">Indietro</a> 
+          <p class="header" >Modifica questo ricordo</p>
+            </div>
+            <div data-role="content" data-theme="a">
+                <div style="width:25%;position:fixed;">
+                <div >
+                <script>
+				
+                function changePic(){
+					 $("#changing").attr("src", "example2.jpg");
+					 
+					 newRecord.src="example2.jpg";
+					 
+				}
+				function setProperties(){
+					var txt=$("#secondTarget").val();
+					if(txt!=""){
+					 newRecord.title=txt;}
+					 changeListener();
+					
+				}
+				</script>
+                 <a id="photochange" onClick="changePic()" data-role="button" style="width:100%;line-height:50%" data-icon="photo" data-iconpos="right">Scatta un'altra foto</a>  </div>
+          <img id="changing" src="example.jpg" style="float:left;width:100%" alt="newPhoto"/>
+          </div>
+          <div style="float:right;width:70%;">
+            <h2 >Vuoi cambiare il titolo?</h2>
+                <div data-role="fieldcontain" >
+                    <input id="secondTarget" type="text" name="newTitle" value="" />
+                </div>
+                  <h2 >Vuoi cambiare il testo?</h2>
+          <textarea placeholder="Raccontaci un ricordo: puoi scrivere quanto vuoi..." style="resize:vertical;min-height:45%">
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam semper lorem ut leo vulputate at porta nunc mollis. Sed bibendum ligula quis nibh pretium faucibus eget sed enim. Cras nisl risus, tempor a feugiat sit amet, porta ac odio. Aenean eu nisi a justo ultricies eleifend. Fusce vel nunc velit, eu varius nibh. In pulvinar ligula sapien, et pulvinar est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean neque ligula, rhoncus id accumsan eget, mollis a nisi. Praesent porta ultrices orci, eu tempor nisi aliquet eget. Vestibulum sem justo, pretium sagittis luctus vel, hendrerit eu arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque eu felis lorem. Quisque eu lacus lobortis urna vestibulum auctor. Sed laoreet, arcu eu tristique gravida, dolor dui tempus diam, et tincidunt sem sapien ut odio.
+
+Curabitur eget nisl libero. Mauris eget vestibulum ante. Sed lacinia iaculis aliquet. Curabitur eu mollis velit. Aliquam euismod elit eu diam varius dapibus. In varius, tellus et tristique eleifend, elit leo bibendum lorem, sit amet accumsan erat neque et risus. Nunc felis diam, mollis vel cursus molestie, luctus sit amet justo. Pellentesque mattis interdum velit et egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce quis nisi in nibh cursus commodo vel in lacus. Donec eget lectus magna, ac semper ipsum.
+
+Morbi eget rhoncus enim. Nunc vitae mauris nisi. Sed dictum arcu quis urna feugiat tincidunt. Maecenas aliquet mollis semper. Fusce elit est, pretium id dapibus eu, iaculis ultricies dui. Vivamus dignissim erat eu velit posuere aliquet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed volutpat nulla non lorem tincidunt convallis. Pellentesque blandit aliquam diam sed iaculis. In eleifend velit sed ante mattis dignissim. Cras sollicitudin congue sapien accumsan hendrerit. Fusce eu purus et orci condimentum tempus.
+
+Cras feugiat, quam ut sollicitudin rhoncus, urna nisi pulvinar orci, at fermentum massa eros eget justo. Morbi euismod ipsum ut nunc cursus quis semper sapien vulputate. Nam egestas ornare vestibulum. Donec mi orci, tristique non convallis id, adipiscing vel sem. Ut vitae risus nunc, id pharetra est. Nullam et nulla neque, ut tempus tellus. Quisque pretium dapibus mattis. Aenean non est odio. Fusce varius, diam in tempus hendrerit, felis est sodales ante, id tincidunt nibh massa porta nibh. Etiam non tortor ante. Phasellus sit amet lacus ut leo feugiat blandit. Nullam vel turpis sed leo hendrerit consectetur. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+
+Fusce dui nisi, vulputate eget laoreet id, interdum quis dui. Nulla dictum tellus vel turpis sodales ac consequat nunc pharetra. Integer odio urna, sodales at malesuada consectetur, egestas sed enim. Duis blandit molestie dictum. Duis convallis blandit purus quis volutpat. Nulla varius dignissim odio, eu facilisis urna lacinia a. Maecenas non commodo diam. Suspendisse eu massa quam. Etiam vestibulum mi vel dui iaculis eu lacinia ipsum tristique. Donec scelerisque tincidunt leo id consequat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras id orci vitae nisl luctus elementum ac egestas magna.</textarea>
+            </div></div>
+            <div data-role="footer">
+            <a  style="width:45%;margin-left:50%;top:35%;"  href="#Timeline" data-role="button" data-transition="slide" onClick="setProperties()">Conferma</a>
+       
+                </div>
+               
+            </div>
+     
+
+
+       
+
+
+<div data-role="page" id="FindFriendsPage">
+     <div data-role="header">
+    
+
+     <a  style="width:25%;margin-left:5%;top:5%;"  href="#Timeline" data-role="button" data-transition="slide">Esci</a> 
+      <p class="header" >Cerca persona</p>
+                 </div>
+            <div data-role="content" data-theme="a">
+            
+          
+                 <script>
+		$(document).ready(function(e) {
+        
+	var friendToBe=[];
+	var people=[];
+	
+	for(var i=0;i<15;i++){
+		var s1,s2;
+		s1=random(15-i);
+		s2=random(15-i);
+		var name=z1.splice(s1,1)+" "+z.splice(s2,1);
+		
+		people.push(name);
+		if(random(3)==1){
+			friendToBe.push(name);
+			}
+		}
+		createList(friendToBe);
+		
+            var s= "<li><a href='#popupBasic' ";
+			var dest="";
+			var s1=">";
+			var s2="</a></li>";
+			for(var i=0;i<people.length;i++){
+			$("#friends").append(s+dest+s1+people[i]+s2);
+			}
+        });
+	
+	var z=[	
+"Andrea",
+"Luca",
+"Marco",
+"Francesco",
+"Matteo",
+"Alessandro",
+"Davide",
+"Simone",
+"Federico",
+"Lorenzo",
+"Mattia",
+"Stefano",
+"Giuseppe",
+"Riccardo",
+"Daniele"]
+	var z1=[	
+"Rossi",
+"Russo",
+"Ferrari",
+"Eposito",
+"Bianchi",
+"Romano",
+"Colombo",
+"Ricci",
+"Marino",
+"Greco",
+"Gallo",
+"Conti",
+"De Luca",
+"Mancini",
+"Bruno"]
+function random(n){return Math.floor(Math.random()*n);}
+        
+        </script>
+               <h2 >Cerca una persona</h2>
+      
+          <div class="content-primary" style="width:70%;margin-left:auto;margin-right:auto" >	
+
+			<form class="ui-listview-filter ui-bar-c" role="search"></form>
+<style>
+div.ui-input-search.ui-shadow-inset.ui-btn-corner-all.ui-btn-shadow.ui-icon-searchfield.ui-body-c{
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+	}
+</style>
+            <ul id="friends" data-role="listview" data-filter="true" class="ui-listview">
+			</ul>
+			</div>
+            </div>
+            <div data-role="footer">
+         
+                     <a  style="width:45%;margin-left:50%;top:35%;"  href="#FriendsPage" data-role="button" data-transition="slide">Visualizza Amici</a>
+                   
+               
+                </div>
+         
+        </div>
+        
+   
+ 
+
+     
+         <div data-role="page" id="FriendsPage">
+            <div data-role="header">
+         <p class="header" >Amici</p>
+ <a  style="width:25%;margin-left:5%;top:5%;"  href="#FindFriendsPage" data-role="button" data-transition="slide">Indietro</a> 
+            </div>
+            <div data-role="content" data-theme="a">
+          <h2 >Seleziona per vedere le informazioni</h2>
+          <script>
+		  
+		 function createList(e) {
+			// alert("creating list " +e[0]);
+            var s= "<li><a href=?'";
+			var dest="";
+			var s1=">";
+			var s2="</a></li>";
+			for(var i=0;i<e.length;i++){
+			$("#flist").append(s+dest+s1+e[i]+s2);
+			}
+			}
+       
+       
+          </script>
+          <ul id="flist" data-role="listview">
+			
+            </ul>
+            </div>
+            <div data-role="footer">
+              <a  style="width:45%;margin-left:50%;top:35%;"  href="#Timeline" data-role="button" data-transition="slide">Torna alla pagina principale</a>
+ 
+                </div>
+            </div>
+     </body>
+
+
+			
+        
+<!--
+        <div data-role="page" id="page">
+            <div data-role="header">
+         
+
+            </div>
+            <div data-role="content">
+          
+            </div>
+            <div data-role="footer">
+        
+                </div>
+            </div>
+        </div>
+        -->
+   
+    
+        
+        	
