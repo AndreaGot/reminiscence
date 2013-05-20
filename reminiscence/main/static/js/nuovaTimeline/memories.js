@@ -331,12 +331,12 @@ var memory = function (nominalYear, actualYear, src, actualPos, placeHolder, tit
         newdiv.style.background = PERSONALMEMORYRECORD;
     }
     if (type == "music") {
-        this.divdiv.style.backgroundImage = "{% static 'images/music.png' %}";
+        this.divdiv.style.backgroundImage = "http://devfever.altervista.org/music.jpg";
         newdiv.onclick = function () {
             popUpVideo(src[0]);}
 			}         else if(photoNumber==0){
 				
-			this.divdiv.style.backgroundImage = "{% static 'images/no image.png' %}";
+			this.divdiv.style.backgroundImage = "http://devfever.altervista.org/no%20image.jpg";
 			}
 
     
