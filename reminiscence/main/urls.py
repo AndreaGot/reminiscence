@@ -32,4 +32,5 @@ urlpatterns = patterns('',
 # URL DI TIMELINE
 
     url(r'^timeline/', views.timeline, name='timeline'),
+    url(r'^provatl/', views.provaTL, name='provaTL'),
 )

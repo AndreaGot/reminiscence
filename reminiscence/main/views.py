@@ -120,7 +120,6 @@ def conferma(request):#se vogliamo provarla davvero e usarla al posto di conferm
 	json_data=request.POST.get('json')
 	json_data=simplejson.loads(request.body)
 	
-	print "devosalvare"*150
 	a=Anziano()
 	t = get_or_none(Comune, comune="Trento")
 	a.nome = json_data["nome"]
@@ -131,7 +130,6 @@ def conferma(request):#se vogliamo provarla davvero e usarla al posto di conferm
 	a.luogo_nascita = t # json_data["luogo_nascita]
 	a.email = json_data["email"]
 	a.password = json_data["password"]
-	print "devosalvare"*150
 	a.save()
 	return render(request, 'main/account/confermaAccount.html')
 	
@@ -205,6 +203,12 @@ def timeline (request):
 	giornimese = [i for i in range(1, 32)]
 	context = {'giri':giri, 'giornimese':giornimese}
 	return render(request, 'main/timeline/timeline.html', context)
+
+
+def provaTL(request):
+	return render(request, 'main/nuovaTimeline/main.html')
+
+
 
 
 #
