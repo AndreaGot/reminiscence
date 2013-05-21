@@ -2,9 +2,10 @@
 from django.http import HttpResponse
 from django.template import Context, loader
 from django.shortcuts import render
-from django.utils import simplejson
+from django.utils import simplejson as json
 from reminiscence.main.models import Comune, Provincia, Regione, Anziano,Memoria,si_svolge_memoria,Decade
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.safestring import SafeString
 
 # metodo di chiamata non efficiente qui sotto
 
@@ -60,7 +61,7 @@ def verifica(request):
 	else:
 		return render(request, 'main/nuovologin/login.html')
 	    
-	context = {'name':name, 'pass': str(b.password), 'risp':risp}
+	context = {'name':name, 'pass': str(b.password), 'risp':risp, 'anno': str(b.anno_nascita), 'id': str(b.id)}
 	return render(request, 'main/timeline/timeline.html', context)
 
 #
@@ -206,7 +207,13 @@ def timeline (request):
 
 
 def provaTL(request):
-	return render(request, 'main/nuovaTimeline/main.html')
+	
+	#b = get_or_none(Anziano, nome=name)
+	lista = Memoria.objects.values('titolo', 'descrizione')[:3]
+	jsonMem = str(json.dumps(list(lista)))
+	
+	context = {'jsonMem':jsonMem}
+	return render(request, 'main/nuovaTimeline/main.html', context)
 
 
 

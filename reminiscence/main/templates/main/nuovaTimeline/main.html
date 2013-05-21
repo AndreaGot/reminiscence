@@ -12,7 +12,6 @@
 <script src="{% static 'js/nuovaTimeline/TimeLineColor.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/nuovaTimeline/memories.js' %}" type="text/javascript"></script>
 <link href="{% static 'css/nuovaTimeline/myStyle.css' %}" rel="stylesheet" type="text/css"/>
-
 </head> 
 <style>
 html,body{
@@ -175,7 +174,7 @@ $(document).on("tap",function(e){e.preventDefault();});
      
 <div data-role="popup" id="positionWindow" style="width:200px;height:200px;">
 <a id="back1" href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-	<p>I am positioned to the window.</p>
+	<p> {{jsonMem}} </p>
 </div>
 
    <div class="console" style="position:absolute;top:100%;width:80%;margin-left:10%;margin-right:10%;border-radius:0px;z-index:10;" id="my-collaspible2" >
