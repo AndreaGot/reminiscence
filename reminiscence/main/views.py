@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import Context, loader
 from django.shortcuts import render
 from django.utils import simplejson as json
-from reminiscence.main.models import Comune, Provincia, Regione, Anziano,Memoria,si_svolge_memoria,Decade
+from reminiscence.main.models import Comune, Provincia, Regione, Anziano,Memoria,si_svolge_memoria,Decade, Hint
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.safestring import SafeString
 
@@ -208,11 +208,15 @@ def timeline (request):
 
 def provaTL(request):
 	
+	#per perfezionare l'estrazione dei dati fare in modo di prendere il nome dell'anziano (come fare non lo so, non ho la pagina)
 	#b = get_or_none(Anziano, nome=name)
 	lista = Memoria.objects.values('titolo', 'descrizione')[:3]
 	jsonMem = str(json.dumps(list(lista)))
 	
-	context = {'jsonMem':jsonMem}
+	lista2 = Hint.objects.values('titolo')
+	jsonHint = str(json.dumps(list(lista2)))
+	
+	context = {'jsonMem':jsonMem, 'jsonHint':jsonHint}
 	return render(request, 'main/nuovaTimeline/main.html', context)
 
 
